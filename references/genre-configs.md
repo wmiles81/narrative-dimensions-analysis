@@ -189,7 +189,7 @@ Combines:
 ## Constraint Validation Rules
 
 ### Universal Rules
-1. No dimension can jump > 3 points without catalyst
+1. No dimension can jump ≥ 3 points without catalyst
 2. At least 2 dimensions must move per chapter
 3. Ending must satisfy ALL genre requirements
 4. Black moment must threaten core genre promise
@@ -207,8 +207,11 @@ def validate_romance_ending(state):
 **Thriller:** Danger resolved or accepted
 ```python
 def validate_thriller_ending(state):
-    return (state.danger <= 3 or 
-            state.acceptance >= 8)
+    # Either danger is eliminated (≤ 3)
+    # OR character has accepted living with unresolved danger (acceptance ≥ 8)
+    # Note: acceptance is optional dimension for psychological peace with outcome
+    return (state.danger <= 3 or
+            state.get('acceptance', 0) >= 8)
 ```
 
 **Mystery:** Information revealed

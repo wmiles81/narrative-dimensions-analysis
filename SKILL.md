@@ -89,7 +89,7 @@ To increase tension:
 ### Arc Validation
 
 Check if dimensional changes are "earned":
-- Each jump > 2 points needs catalyst event
+- Each jump ≥ 3 points needs catalyst event
 - Trajectory must be continuous (no teleportation)
 - Character growth shows across multiple dimensions
 
@@ -174,10 +174,43 @@ Target configuration:
 - Physical Proximity: 8 (forced closeness)
 ```
 
+## Terminology & Calculation Clarifications
+
+### Goal Alignment vs. Goal Misalignment
+- **Goal Alignment** is the primary dimension (0-10 scale)
+  - 0 = Complete opposition (incompatible goals)
+  - 5 = Neutral or partially aligned
+  - 10 = Perfect alignment (wanting exactly the same thing)
+- **Goal Misalignment** is calculated for tension formulas:
+  - `goal_misalignment = 10 - goal_alignment`
+  - Used in tension calculations to measure conflict from opposing objectives
+
+### Information Asymmetry Types
+The system tracks two types of information gaps:
+- **Character Information Asymmetry**: Knowledge gaps between characters (primary dimension)
+  - One character knows something the other doesn't
+  - Secrets, hidden identities, withheld information
+- **Reader Mystery**: Knowledge gaps between reader and story truth (genre-specific)
+  - What the audience doesn't know yet
+  - Used for suspense and mystery genres
+
+### Acceptance Dimension (Optional)
+- **Acceptance** (0-10): Character's psychological peace with an outcome
+  - 0 = Cannot accept reality, in denial or fighting it
+  - 5 = Struggling with acceptance
+  - 10 = Complete peace with the situation
+- Useful for endings where full resolution isn't possible
+- Common in thrillers (accepting danger exists), tragedies (accepting loss)
+
+### Catalyst Event Threshold
+- Dimensional jumps **≥ 3 points** require a catalyst event
+- Jumps of 1-2 points can occur through accumulated small moments
+- See `references/catalyst-events.md` for event types that justify large shifts
+
 ## Key Principles
 
 1. **Stories are trajectories** - Not events but dimensional movement
-2. **Tension emerges** - From configuration, not arbitrary assignment  
+2. **Tension emerges** - From configuration, not arbitrary assignment
 3. **Pacing is velocity** - How fast you move through phase space
 4. **Genres constrain paths** - Not destinations but allowable trajectories
 5. **Earned moments** - Require proper path integration, not jumps

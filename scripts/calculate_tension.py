@@ -73,7 +73,10 @@ def calculate_tension(state: Dict[str, float], genre: str = "romance",
     if 'info_asymmetry' in weights and 'info_asymmetry' in state:
         components['info_asymmetry'] = state['info_asymmetry'] * weights['info_asymmetry']
     
-    # Calculate goal misalignment (10 - alignment)
+    # Calculate goal misalignment (inverse of alignment)
+    # Note: goal_misalignment = 10 - goal_alignment
+    # This converts alignment (how much they want the same thing)
+    # into misalignment (how much they're in conflict)
     if 'goal_misalignment' in weights and 'goal_alignment' in state:
         misalignment = 10 - state['goal_alignment']
         components['goal_misalignment'] = misalignment * weights['goal_misalignment']
