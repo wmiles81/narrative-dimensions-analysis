@@ -4,6 +4,7 @@ Generate comprehensive dimensional analysis reports for stories.
 """
 
 import json
+import sys
 from typing import Dict, List, Optional
 from datetime import datetime
 
@@ -22,12 +23,26 @@ class DimensionalReport:
         self.content_level = content_level
         self.timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
     
-    def generate_full_report(self, 
+    def generate_full_report(self,
                             current_state: Dict,
                             trajectory: Optional[List[Dict]] = None,
                             analysis_notes: Optional[str] = None) -> str:
         """Generate comprehensive dimensional analysis report."""
-        
+
+        # Input validation
+        if not isinstance(current_state, dict):
+            raise TypeError(f"current_state must be a dict, got {type(current_state)}")
+
+        if not current_state:
+            raise ValueError("current_state cannot be empty")
+
+        if trajectory is not None:
+            if not isinstance(trajectory, list):
+                raise TypeError(f"trajectory must be a list, got {type(trajectory)}")
+            for i, state in enumerate(trajectory):
+                if not isinstance(state, dict):
+                    raise TypeError(f"Trajectory state at index {i} must be a dict, got {type(state)}")
+
         report = []
         report.append("=" * 60)
         report.append(f"DIMENSIONAL NARRATIVE ANALYSIS REPORT")

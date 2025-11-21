@@ -1,0 +1,17 @@
+# Narrative Dimensions Analysis - Requirements
+#
+# This project uses only Python standard library modules.
+# No external dependencies are required.
+#
+# Minimum Python version: 3.7+
+#
+# Standard library modules used:
+# - json (for data serialization)
+# - sys (for system operations)
+# - pathlib (for cross-platform path handling)
+# - typing (for type hints)
+# - datetime (for timestamps)
+#
+# For development/testing (optional):
+# pytest>=7.0.0
+# mypy>=1.0.0

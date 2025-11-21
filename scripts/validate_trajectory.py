@@ -4,6 +4,7 @@ Validate narrative trajectories for proper story progression.
 """
 
 import json
+import sys
 from typing import Dict, List, Tuple, Optional
 
 class TrajectoryValidator:
@@ -39,20 +40,31 @@ class TrajectoryValidator:
     def validate_trajectory(self, trajectory: List[Dict]) -> Dict:
         """
         Validate a complete story trajectory.
-        
+
         Args:
             trajectory: List of dimensional states in chronological order
-            
+
         Returns:
             Validation report with passed/failed checks and issues
         """
+        # Input validation
+        if not isinstance(trajectory, list):
+            raise TypeError(f"Trajectory must be a list, got {type(trajectory)}")
+
+        if not trajectory:
+            raise ValueError("Trajectory cannot be empty")
+
+        for i, state in enumerate(trajectory):
+            if not isinstance(state, dict):
+                raise TypeError(f"State at index {i} must be a dict, got {type(state)}")
+
         report = {
             'valid': True,
             'checks': [],
             'warnings': [],
             'errors': []
         }
-        
+
         # Check 1: Minimum trajectory length
         if len(trajectory) < 3:
             report['errors'].append("Trajectory too short for analysis")

@@ -5,12 +5,25 @@ Calculate narrative tension from dimensional state vectors.
 
 import json
 import sys
+from pathlib import Path
 from typing import Dict, Optional
+
+# Get the project root directory (parent of scripts/)
+PROJECT_ROOT = Path(__file__).parent.parent
+WEIGHTS_FILE = PROJECT_ROOT / 'references' / 'genre-weights.json'
 
 def load_genre_weights(genre: str, subgenre: Optional[str] = None) -> Dict[str, float]:
     """Load tension weights for specific genre/subgenre."""
-    with open('../references/genre-weights.json', 'r') as f:
-        weights = json.load(f)
+    try:
+        with open(WEIGHTS_FILE, 'r') as f:
+            weights = json.load(f)
+    except FileNotFoundError:
+        raise FileNotFoundError(
+            f"Genre weights file not found at {WEIGHTS_FILE}. "
+            f"Please ensure references/genre-weights.json exists."
+        )
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Invalid JSON in genre weights file: {e}")
     
     # Navigate to specific genre/subgenre
     if genre in weights:
@@ -92,9 +105,13 @@ def calculate_tension(state: Dict[str, float], genre: str = "romance",
     
     # Apply modifiers
     if modifiers:
-        with open('../references/genre-weights.json', 'r') as f:
-            all_weights = json.load(f)
-            
+        try:
+            with open(WEIGHTS_FILE, 'r') as f:
+                all_weights = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError) as e:
+            print(f"Warning: Could not load modifiers: {e}", file=sys.stderr)
+            all_weights = {}
+
         if 'modifiers' in all_weights:
             for modifier in modifiers:
                 if modifier in all_weights['modifiers']:
