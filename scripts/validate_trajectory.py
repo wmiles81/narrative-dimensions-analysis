@@ -8,10 +8,13 @@ import sys
 from typing import Dict, List, Tuple, Optional
 
 class TrajectoryValidator:
-    def __init__(self, genre: str = "romance", subgenre: Optional[str] = None):
+    def __init__(self, genre: str = "romance", subgenre: Optional[str] = None,
+                 ending_type: Optional[str] = None):
         self.genre = genre
         self.subgenre = subgenre
+        self.ending_type = ending_type  # 'HEA', 'HFN', 'tragic', 'bittersweet', etc.
         self.load_genre_requirements()
+        self.load_ending_types()
         
     def load_genre_requirements(self):
         """Load genre-specific requirements."""
@@ -34,6 +37,91 @@ class TrajectoryValidator:
             'mystery': {
                 'ending': {'info_asymmetry': 2},
                 'progression': 'info_asymmetry_decreasing'
+            }
+        }
+
+    def load_ending_types(self):
+        """Load ending type definitions for different genres and outcomes."""
+        self.ending_types = {
+            'romance': {
+                'HEA': {  # Happily Ever After
+                    'intimacy': 8,
+                    'trust': 7,
+                    'goal_alignment': 8,
+                    'description': 'Committed relationship, high intimacy and trust'
+                },
+                'HFN': {  # Happy For Now
+                    'intimacy': 7,
+                    'trust': 6,
+                    'goal_alignment': 7,
+                    'description': 'Together but not fully committed'
+                },
+                'tragic': {
+                    'description': 'Intentional failure to unite',
+                    'note': 'No minimum requirements - validates narrative justification for separation'
+                },
+                'bittersweet': {
+                    'intimacy': (4, 7),
+                    'trust': (4, 6),
+                    'description': 'Together but with significant cost or limitation'
+                }
+            },
+            'dark-romance': {
+                'HEA': {
+                    'intimacy': 7,
+                    'trust': 6,
+                    'power_differential': (-2, 2),
+                    'description': 'Together with balanced power'
+                },
+                'HFN': {
+                    'intimacy': 6,
+                    'trust': 5,
+                    'power_differential': (-3, 3),
+                    'description': 'Together but power or trust issues remain'
+                },
+                'tragic': {
+                    'description': 'Separation or death despite connection',
+                    'note': 'Validates dark romance elements maintained throughout'
+                },
+                'dark_hea': {
+                    'intimacy': 7,
+                    'trust': 5,
+                    'power_differential': (-4, -2),  # Intentional power imbalance
+                    'description': 'Together in morally ambiguous dynamic'
+                }
+            },
+            'mystery': {
+                'solved': {
+                    'info_asymmetry': (0, 2),
+                    'description': 'Mystery fully resolved'
+                },
+                'noir_open': {
+                    'info_asymmetry': (4, 6),
+                    'moral_ambiguity': (6, 10),
+                    'description': 'Some answers, but morally complex'
+                },
+                'unsolved': {
+                    'info_asymmetry': (7, 10),
+                    'acceptance': (7, 10),
+                    'description': 'Intentionally unresolved, character accepts uncertainty'
+                }
+            },
+            'thriller': {
+                'victory': {
+                    'danger': (0, 2),
+                    'stakes': (0, 4),
+                    'description': 'Threat eliminated, safety restored'
+                },
+                'pyrrhic_victory': {
+                    'danger': (0, 3),
+                    'stakes': (3, 6),
+                    'description': 'Threat stopped but at great cost'
+                },
+                'ongoing_threat': {
+                    'danger': (5, 8),
+                    'acceptance': (7, 10),
+                    'description': 'Threat remains, character adapts to new reality'
+                }
             }
         }
     
@@ -109,20 +197,23 @@ class TrajectoryValidator:
         """Check for unrealistic jumps between states."""
         max_jump = self.requirements.get(self.genre, {}).get('max_jump', 3)
         issues = []
-        
+        skip_fields = {'beat', 'chapter', 'description', 'act', 'scene', 'notes'}
+
         for i in range(1, len(trajectory)):
             prev_state = trajectory[i-1]
             curr_state = trajectory[i]
-            
+
             for dimension in curr_state:
-                if dimension in prev_state:
+                if dimension in skip_fields or not isinstance(curr_state[dimension], (int, float)):
+                    continue
+                if dimension in prev_state and isinstance(prev_state[dimension], (int, float)):
                     jump = abs(curr_state[dimension] - prev_state[dimension])
                     if jump > max_jump:
                         issues.append(
                             f"Chapter {i}: {dimension} jumped {jump} points "
                             f"(max allowed: {max_jump}). Needs catalyst event."
                         )
-        
+
         return {
             'name': 'Jump Validation',
             'passed': len(issues) == 0,
@@ -133,23 +224,26 @@ class TrajectoryValidator:
         """Check for sufficient dimensional movement."""
         issues = []
         min_moving = self.requirements.get(self.genre, {}).get('min_dimensions_moving', 2)
-        
+        skip_fields = {'beat', 'chapter', 'description', 'act', 'scene', 'notes'}
+
         for i in range(1, len(trajectory)):
             prev_state = trajectory[i-1]
             curr_state = trajectory[i]
-            
+
             dimensions_moved = 0
             for dimension in curr_state:
-                if dimension in prev_state:
+                if dimension in skip_fields or not isinstance(curr_state[dimension], (int, float)):
+                    continue
+                if dimension in prev_state and isinstance(prev_state[dimension], (int, float)):
                     if abs(curr_state[dimension] - prev_state[dimension]) >= 0.5:
                         dimensions_moved += 1
-            
+
             if dimensions_moved < min_moving:
                 issues.append(
                     f"Chapter {i}: Only {dimensions_moved} dimensions moving "
                     f"(minimum: {min_moving}). Scene may feel static."
                 )
-        
+
         return {
             'name': 'Movement Validation',
             'passed': len(issues) < len(trajectory) * 0.2,  # Allow 20% static scenes
@@ -160,40 +254,75 @@ class TrajectoryValidator:
         """Check if story meets genre-specific requirements."""
         issues = []
         reqs = self.requirements.get(self.genre, {})
-        
+
         # Check ending requirements
-        if 'ending' in reqs and len(trajectory) > 0:
+        if len(trajectory) > 0:
             final_state = trajectory[-1]
-            for dimension, required_value in reqs['ending'].items():
-                if dimension in final_state:
-                    if isinstance(required_value, tuple):
-                        # Range requirement
-                        if not (required_value[0] <= final_state[dimension] <= required_value[1]):
-                            issues.append(
-                                f"Ending: {dimension} = {final_state[dimension]} "
-                                f"(required: {required_value[0]} to {required_value[1]})"
-                            )
-                    else:
-                        # Minimum requirement
-                        if final_state[dimension] < required_value:
-                            issues.append(
-                                f"Ending: {dimension} = {final_state[dimension]} "
-                                f"(required: >= {required_value})"
-                            )
-        
-        # Check sustained requirements
+
+            # If ending_type is specified, use ending type requirements
+            if self.ending_type:
+                ending_reqs = self.ending_types.get(self.genre, {}).get(self.ending_type, {})
+
+                # Special handling for tragic endings - minimal validation
+                if self.ending_type == 'tragic':
+                    # For tragic endings, we just add an informational note
+                    # No strict requirements - allows narrative flexibility
+                    pass
+                else:
+                    # Validate against ending type requirements
+                    for dimension, required_value in ending_reqs.items():
+                        # Skip non-dimensional fields
+                        if dimension in ['description', 'note']:
+                            continue
+
+                        if dimension in final_state:
+                            if isinstance(required_value, tuple):
+                                # Range requirement
+                                if not (required_value[0] <= final_state[dimension] <= required_value[1]):
+                                    issues.append(
+                                        f"Ending ({self.ending_type}): {dimension} = {final_state[dimension]} "
+                                        f"(required: {required_value[0]} to {required_value[1]})"
+                                    )
+                            else:
+                                # Minimum requirement
+                                if final_state[dimension] < required_value:
+                                    issues.append(
+                                        f"Ending ({self.ending_type}): {dimension} = {final_state[dimension]} "
+                                        f"(required: >= {required_value})"
+                                    )
+
+            # Otherwise use default genre ending requirements
+            elif 'ending' in reqs:
+                for dimension, required_value in reqs['ending'].items():
+                    if dimension in final_state:
+                        if isinstance(required_value, tuple):
+                            # Range requirement
+                            if not (required_value[0] <= final_state[dimension] <= required_value[1]):
+                                issues.append(
+                                    f"Ending: {dimension} = {final_state[dimension]} "
+                                    f"(required: {required_value[0]} to {required_value[1]})"
+                                )
+                        else:
+                            # Minimum requirement
+                            if final_state[dimension] < required_value:
+                                issues.append(
+                                    f"Ending: {dimension} = {final_state[dimension]} "
+                                    f"(required: >= {required_value})"
+                                )
+
+        # Check sustained requirements (applies regardless of ending type)
         if 'sustained' in reqs:
             for dimension, min_value in reqs['sustained'].items():
                 violations = []
                 for i, state in enumerate(trajectory):
                     if dimension in state and state[dimension] < min_value:
                         violations.append(i)
-                
+
                 if violations:
                     issues.append(
                         f"{dimension} dropped below {min_value} in chapters: {violations}"
                     )
-        
+
         return {
             'name': 'Genre Requirements',
             'passed': len(issues) == 0,
@@ -239,34 +368,41 @@ class TrajectoryValidator:
     def check_character_arcs(self, trajectory: List[Dict]) -> Dict:
         """Check if character arcs show growth."""
         issues = []
-        
+        skip_fields = {'beat', 'chapter', 'description', 'act', 'scene', 'notes'}
+
         if len(trajectory) < 2:
             return {'name': 'Character Arcs', 'passed': True, 'issues': []}
-        
+
         first_state = trajectory[0]
         final_state = trajectory[-1]
-        
+
         # Check for dimensions that haven't changed
         static_dimensions = []
         for dimension in first_state:
-            if dimension in final_state:
+            if dimension in skip_fields or not isinstance(first_state[dimension], (int, float)):
+                continue
+            if dimension in final_state and isinstance(final_state[dimension], (int, float)):
                 if abs(final_state[dimension] - first_state[dimension]) < 1:
                     static_dimensions.append(dimension)
-        
-        if len(static_dimensions) > len(first_state) * 0.5:
+
+        # Count total dimensional fields
+        total_dims = sum(1 for d in first_state if d not in skip_fields and isinstance(first_state[d], (int, float)))
+
+        if total_dims > 0 and len(static_dimensions) > total_dims * 0.5:
             issues.append(
                 f"Limited character growth: {', '.join(static_dimensions)} "
                 "remained largely static"
             )
-        
-        # Check for regression
-        if self.genre == 'romance':
+
+        # Check for regression (unless intentional for tragic ending)
+        if self.genre == 'romance' and self.ending_type != 'tragic':
             key_dimensions = ['intimacy', 'trust', 'vulnerability']
             for dim in key_dimensions:
                 if dim in first_state and dim in final_state:
-                    if final_state[dim] < first_state[dim]:
-                        issues.append(f"Character regression: {dim} ended lower than started")
-        
+                    if isinstance(first_state[dim], (int, float)) and isinstance(final_state[dim], (int, float)):
+                        if final_state[dim] < first_state[dim]:
+                            issues.append(f"Character regression: {dim} ended lower than started")
+
         return {
             'name': 'Character Arcs',
             'passed': len(issues) == 0,
@@ -277,13 +413,18 @@ class TrajectoryValidator:
         """Calculate velocity between two states."""
         total_movement = 0
         dimensions_counted = 0
-        
+
+        # Skip metadata fields
+        skip_fields = {'beat', 'chapter', 'description', 'act', 'scene', 'notes'}
+
         for dimension in state1:
-            if dimension in state2:
+            if dimension in skip_fields or not isinstance(state1[dimension], (int, float)):
+                continue
+            if dimension in state2 and isinstance(state2[dimension], (int, float)):
                 movement = abs(state2[dimension] - state1[dimension])
                 total_movement += movement
                 dimensions_counted += 1
-        
+
         if dimensions_counted > 0:
             return total_movement / dimensions_counted
         return 0

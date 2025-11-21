@@ -1,0 +1,12 @@
+Beat Name,Story %,trust,stakes,danger,info_asymmetry,power_differential,proximity,vulnerability,Notes
+Normal World,5,5,2,0,3,0,5,3,Ordinary life before the inciting incident
+Inciting Incident,12,5,6,4,6,0,6,3,Threat emerges - stakes jump immediately
+Point of No Return,25,4,8,6,7,-2,7,4,Committed to the path - danger increasing
+Rising Danger,40,3,8,7,6,-2,8,5,Threat escalates - feeling vulnerable and outmatched
+Midpoint Twist,50,2,9,8,8,0,6,6,Major revelation changes everything
+False Victory,60,4,8,5,5,1,7,5,Temporary upper hand - brief moment of safety
+Betrayal/Reversal,70,1,9,8,9,-3,8,7,Trust shattered - power shifts against protagonist
+Dark Night of Soul,80,2,10,9,7,-2,4,8,Lowest point - maximum danger and vulnerability
+Final Preparation,85,3,10,8,4,0,5,7,Gathering strength - information coming together
+Final Confrontation,95,4,10,10,2,2,10,9,Face to face with threat - all or nothing
+Resolution,100,6,4,2,1,3,6,5,Danger resolved - returning to stability (changed)

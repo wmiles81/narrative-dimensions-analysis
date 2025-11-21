@@ -6,11 +6,12 @@ Calculate narrative tension from dimensional state vectors.
 import json
 import sys
 from pathlib import Path
-from typing import Dict, Optional
+from typing import Dict, Optional, List, Tuple
 
 # Get the project root directory (parent of scripts/)
 PROJECT_ROOT = Path(__file__).parent.parent
 WEIGHTS_FILE = PROJECT_ROOT / 'references' / 'genre-weights.json'
+CUSTOM_WEIGHTS_DIR = PROJECT_ROOT / 'custom-weights'
 
 def load_genre_weights(genre: str, subgenre: Optional[str] = None) -> Dict[str, float]:
     """Load tension weights for specific genre/subgenre."""
@@ -46,22 +47,115 @@ def load_genre_weights(genre: str, subgenre: Optional[str] = None) -> Dict[str, 
         "power_differential": 0.10
     }
 
-def calculate_tension(state: Dict[str, float], genre: str = "romance", 
-                     subgenre: Optional[str] = None, 
-                     modifiers: Optional[list] = None) -> Dict:
+def blend_genre_weights(genre_blends: List[Tuple[str, Optional[str], float]]) -> Dict[str, float]:
+    """
+    Blend multiple genre formulas with specified proportions.
+
+    Args:
+        genre_blends: List of (genre, subgenre, weight) tuples
+                     Example: [('romance', 'contemporary', 0.7), ('thriller', 'psychological', 0.3)]
+
+    Returns:
+        Blended weights dictionary
+    """
+    if not genre_blends:
+        raise ValueError("Must provide at least one genre blend")
+
+    # Normalize weights to sum to 1.0
+    total_weight = sum(weight for _, _, weight in genre_blends)
+    if total_weight == 0:
+        raise ValueError("Total blend weights cannot be zero")
+
+    blended = {}
+
+    for genre, subgenre, weight in genre_blends:
+        genre_weights = load_genre_weights(genre, subgenre)
+        normalized_weight = weight / total_weight
+
+        for dimension, dim_weight in genre_weights.items():
+            if dimension not in blended:
+                blended[dimension] = 0
+            blended[dimension] += dim_weight * normalized_weight
+
+    return blended
+
+
+def save_custom_weights(weights: Dict[str, float], name: str) -> Path:
+    """
+    Save custom weights configuration to file.
+
+    Args:
+        weights: Dictionary of dimension weights
+        name: Name for this custom configuration
+
+    Returns:
+        Path to saved file
+    """
+    CUSTOM_WEIGHTS_DIR.mkdir(exist_ok=True)
+
+    filepath = CUSTOM_WEIGHTS_DIR / f"{name}.json"
+
+    with open(filepath, 'w') as f:
+        json.dump({
+            'name': name,
+            'weights': weights,
+            'note': 'Custom tension formula weights'
+        }, f, indent=2)
+
+    return filepath
+
+
+def load_custom_weights(name: str) -> Dict[str, float]:
+    """
+    Load custom weights configuration from file.
+
+    Args:
+        name: Name of custom configuration
+
+    Returns:
+        Dictionary of dimension weights
+    """
+    filepath = CUSTOM_WEIGHTS_DIR / f"{name}.json"
+
+    if not filepath.exists():
+        raise FileNotFoundError(f"Custom weights '{name}' not found at {filepath}")
+
+    with open(filepath, 'r') as f:
+        data = json.load(f)
+
+    return data.get('weights', {})
+
+
+def calculate_tension(state: Dict[str, float], genre: str = "romance",
+                     subgenre: Optional[str] = None,
+                     modifiers: Optional[list] = None,
+                     custom_weights: Optional[Dict[str, float]] = None,
+                     genre_blend: Optional[List[Tuple[str, Optional[str], float]]] = None) -> Dict:
     """
     Calculate tension and component breakdown from dimensional state.
-    
+
     Args:
         state: Dictionary of dimension values (0-10 scale except power_diff)
-        genre: Primary genre
-        subgenre: Specific subgenre
+        genre: Primary genre (ignored if custom_weights or genre_blend provided)
+        subgenre: Specific subgenre (ignored if custom_weights or genre_blend provided)
         modifiers: List of modifiers (e.g., ['mafia', 'captive'])
-    
+        custom_weights: Optional custom weights dictionary (overrides genre/subgenre)
+        genre_blend: Optional list of (genre, subgenre, weight) tuples for blending
+                    Example: [('romance', 'contemporary', 0.7), ('thriller', 'psychological', 0.3)]
+
     Returns:
         Dictionary with total tension and component breakdown
     """
-    weights = load_genre_weights(genre, subgenre)
+    # Determine which weights to use (priority: custom > blend > genre)
+    if custom_weights:
+        weights = custom_weights
+        config_type = 'custom'
+    elif genre_blend:
+        weights = blend_genre_weights(genre_blend)
+        config_type = 'blend'
+    else:
+        weights = load_genre_weights(genre, subgenre)
+        config_type = 'genre'
     
     # Calculate base components
     components = {}
@@ -127,15 +221,26 @@ def calculate_tension(state: Dict[str, float], genre: str = "romance",
     total_tension = sum(components.values())
     total_tension = min(10, total_tension)  # Cap at 10
     
+    # Build configuration info
+    config_info = {
+        'type': config_type,
+        'modifiers': modifiers or []
+    }
+
+    if config_type == 'genre':
+        config_info['genre'] = genre
+        config_info['subgenre'] = subgenre
+    elif config_type == 'blend':
+        config_info['genre_blend'] = genre_blend
+    elif config_type == 'custom':
+        config_info['note'] = 'Using custom weights'
+
     return {
         'total_tension': round(total_tension, 2),
         'components': {k: round(v, 2) for k, v in components.items()},
         'primary_driver': max(components.items(), key=lambda x: x[1])[0] if components else None,
-        'configuration': {
-            'genre': genre,
-            'subgenre': subgenre,
-            'modifiers': modifiers or []
-        }
+        'configuration': config_info,
+        'weights_used': {k: round(v, 3) for k, v in weights.items()}
     }
 
 def diagnose_tension(tension_data: Dict) -> Dict:
@@ -205,25 +310,87 @@ if __name__ == "__main__":
         'danger': 7,
         'moral_ambiguity': 8
     }
-    
+
+    print("=" * 70)
+    print("EXAMPLE 1: Standard Genre Formula (Dark Romance)")
+    print("=" * 70)
+
     tension = calculate_tension(
-        example_state, 
+        example_state,
         genre='romance',
         subgenre='dark',
         modifiers=['captive']
     )
-    
-    print("TENSION ANALYSIS")
-    print("=" * 50)
+
     print(f"Total Tension: {tension['total_tension']}/10")
+    print(f"Configuration: {tension['configuration']['type']}")
     print(f"\nComponents:")
     for component, value in tension['components'].items():
         print(f"  {component}: {value}")
     print(f"\nPrimary Driver: {tension['primary_driver']}")
-    
+
     diagnosis = diagnose_tension(tension)
-    print(f"\nDiagnosis: {diagnosis['level']}")
-    print(f"Assessment: {diagnosis['assessment']}")
-    print("Suggestions:")
-    for suggestion in diagnosis['suggestions']:
-        print(f"  - {suggestion}")
+    print(f"\nDiagnosis: {diagnosis['level']} - {diagnosis['assessment']}")
+
+    print("\n" + "=" * 70)
+    print("EXAMPLE 2: Blended Genre (70% Romance + 30% Thriller)")
+    print("=" * 70)
+
+    blend_tension = calculate_tension(
+        example_state,
+        genre_blend=[
+            ('romance', 'contemporary', 0.7),
+            ('thriller', 'psychological', 0.3)
+        ]
+    )
+
+    print(f"Total Tension: {blend_tension['total_tension']}/10")
+    print(f"Configuration: {blend_tension['configuration']['type']}")
+    print(f"\nWeights Used:")
+    for dim, weight in blend_tension['weights_used'].items():
+        print(f"  {dim}: {weight}")
+    print(f"\nPrimary Driver: {blend_tension['primary_driver']}")
+
+    print("\n" + "=" * 70)
+    print("EXAMPLE 3: Custom Weights")
+    print("=" * 70)
+
+    # Create custom weights emphasizing danger and stakes
+    custom = {
+        'stakes': 0.30,
+        'danger': 0.25,
+        'info_asymmetry': 0.15,
+        'goal_misalignment': 0.10,
+        'vulnerability_trust_gap': 0.10,
+        'power_differential': 0.10
+    }
+
+    custom_tension = calculate_tension(
+        example_state,
+        custom_weights=custom
+    )
+
+    print(f"Total Tension: {custom_tension['total_tension']}/10")
+    print(f"Configuration: {custom_tension['configuration']['type']}")
+    print(f"\nWeights Used:")
+    for dim, weight in custom_tension['weights_used'].items():
+        print(f"  {dim}: {weight}")
+    print(f"\nPrimary Driver: {custom_tension['primary_driver']}")
+
+    # Save custom weights for later use
+    save_path = save_custom_weights(custom, 'high-stakes-action')
+    print(f"\nCustom weights saved to: {save_path}")
+
+    print("\n" + "=" * 70)
+    print("EXAMPLE 4: Loading Saved Custom Weights")
+    print("=" * 70)
+
+    loaded_weights = load_custom_weights('high-stakes-action')
+    loaded_tension = calculate_tension(
+        example_state,
+        custom_weights=loaded_weights
+    )
+
+    print(f"Total Tension: {loaded_tension['total_tension']}/10")
+    print(f"Loaded weights match saved: {loaded_tension['total_tension'] == custom_tension['total_tension']}")
+    print("\nAll examples completed successfully!")

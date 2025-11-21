@@ -1,0 +1,32 @@
+[
+  {
+    "beat": 2,
+    "type": "vulnerability_moment",
+    "description": "Hero shares painful backstory",
+    "dimensions": ["vulnerability", "trust"]
+  },
+  {
+    "beat": 3,
+    "type": "breakthrough",
+    "description": "First kiss - physical and emotional breakthrough",
+    "dimensions": ["intimacy", "desire"]
+  },
+  {
+    "beat": 4,
+    "type": "external_conflict",
+    "description": "Work crisis forces them apart",
+    "dimensions": ["proximity", "goal_alignment"]
+  },
+  {
+    "beat": 7,
+    "type": "betrayal_revelation",
+    "description": "Secret about past relationship revealed",
+    "dimensions": ["trust", "goal_alignment", "info_asymmetry"]
+  },
+  {
+    "beat": 8,
+    "type": "grand_gesture",
+    "description": "Hero makes sacrifice to prove love",
+    "dimensions": ["trust", "vulnerability"]
+  }
+]

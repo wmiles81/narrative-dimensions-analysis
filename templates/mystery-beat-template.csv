@@ -1,0 +1,13 @@
+Beat Name,Story %,info_asymmetry,trust,stakes,mystery,danger,proximity,vulnerability,Notes
+Crime Discovered,5,10,5,5,10,3,4,3,Maximum mystery - reader knows nothing
+Initial Investigation,15,9,5,6,9,3,6,4,Gathering initial clues - establishing suspects
+First Clue,25,8,4,6,8,4,5,4,Important evidence found - trust in some suspects lowering
+Red Herring,35,8,3,6,8,4,6,5,False lead - trust fluctuating
+Breakthrough Discovery,45,7,3,7,7,5,6,6,Key piece of evidence - pattern emerging
+Midpoint Revelation,50,6,4,7,6,5,7,6,Major clue reveals new angle
+Complications,60,6,3,8,6,6,6,7,Danger increasing - getting too close to truth
+Second Incident,70,7,2,9,7,7,7,7,Escalation - stakes raised significantly
+Critical Connection,80,4,3,9,5,7,8,8,Pieces coming together - truth within reach
+Confrontation Setup,85,3,4,9,4,8,9,8,Know who but need proof/confession
+Truth Revealed,95,1,5,8,2,8,10,7,Full revelation - all questions answered
+Resolution,100,0,6,4,0,2,6,5,Justice served - all mysteries solved

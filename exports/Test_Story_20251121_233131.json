@@ -1,0 +1,107 @@
+{
+  "story_title": "Test Story",
+  "genre": "romance",
+  "metadata": {
+    "created": "2025-11-21T23:31:31.491686",
+    "last_modified": "2025-11-21T23:31:31.491724"
+  },
+  "beats": [
+    {
+      "name": "Meet",
+      "percent": 10,
+      "dimensions": {
+        "intimacy": 1,
+        "trust": 3,
+        "desire": 3,
+        "goal_alignment": 4,
+        "stakes": 5
+      },
+      "notes": ""
+    },
+    {
+      "name": "Connect",
+      "percent": 30,
+      "dimensions": {
+        "intimacy": 3,
+        "trust": 4,
+        "desire": 5,
+        "goal_alignment": 5,
+        "stakes": 6
+      },
+      "notes": ""
+    },
+    {
+      "name": "Conflict",
+      "percent": 60,
+      "dimensions": {
+        "intimacy": 4,
+        "trust": 2,
+        "desire": 6,
+        "goal_alignment": 4,
+        "stakes": 8
+      },
+      "notes": ""
+    },
+    {
+      "name": "Reconcile",
+      "percent": 85,
+      "dimensions": {
+        "intimacy": 6,
+        "trust": 5,
+        "desire": 8,
+        "goal_alignment": 7,
+        "stakes": 9
+      },
+      "notes": ""
+    },
+    {
+      "name": "HEA",
+      "percent": 100,
+      "dimensions": {
+        "intimacy": 8,
+        "trust": 8,
+        "desire": 9,
+        "goal_alignment": 9,
+        "stakes": 5
+      },
+      "notes": ""
+    }
+  ],
+  "trajectory": [
+    {
+      "intimacy": 1,
+      "trust": 3,
+      "desire": 3,
+      "goal_alignment": 4,
+      "stakes": 5
+    },
+    {
+      "intimacy": 3,
+      "trust": 4,
+      "desire": 5,
+      "goal_alignment": 5,
+      "stakes": 6
+    },
+    {
+      "intimacy": 4,
+      "trust": 2,
+      "desire": 6,
+      "goal_alignment": 4,
+      "stakes": 8
+    },
+    {
+      "intimacy": 6,
+      "trust": 5,
+      "desire": 8,
+      "goal_alignment": 7,
+      "stakes": 9
+    },
+    {
+      "intimacy": 8,
+      "trust": 8,
+      "desire": 9,
+      "goal_alignment": 9,
+      "stakes": 5
+    }
+  ]
+}

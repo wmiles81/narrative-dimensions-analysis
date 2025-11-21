@@ -1,0 +1,41 @@
+{
+  "story_title": "Session Test",
+  "genre": "thriller",
+  "num_beats": 3,
+  "beats": [
+    {
+      "name": "Start",
+      "percent": 10,
+      "dimensions": {
+        "stakes": 3,
+        "danger": 2,
+        "trust": 5
+      },
+      "notes": "Normal world"
+    },
+    {
+      "name": "Crisis",
+      "percent": 50,
+      "dimensions": {
+        "stakes": 8,
+        "danger": 7,
+        "trust": 3
+      },
+      "notes": "Danger escalates"
+    },
+    {
+      "name": "End",
+      "percent": 100,
+      "dimensions": {
+        "stakes": 4,
+        "danger": 1,
+        "trust": 6
+      },
+      "notes": "Resolution"
+    }
+  ],
+  "metadata": {
+    "created": "2025-11-21T23:31:48.869278",
+    "last_modified": "2025-11-21T23:31:48.869292"
+  }
+}

@@ -95,6 +95,30 @@
       "magic_tension": 0.15
     }
   },
+  "horror": {
+    "psychological": {
+      "fear": 0.30,
+      "stakes": 0.20,
+      "info_asymmetry": 0.20,
+      "vulnerability": 0.15,
+      "power_differential": 0.15
+    },
+    "supernatural": {
+      "fear": 0.25,
+      "danger": 0.25,
+      "stakes": 0.20,
+      "mystery": 0.15,
+      "trust": 0.10,
+      "power_differential": 0.05
+    },
+    "slasher": {
+      "danger": 0.35,
+      "fear": 0.25,
+      "stakes": 0.20,
+      "proximity": 0.10,
+      "info_asymmetry": 0.10
+    }
+  },
   "modifiers": {
     "mafia": {
       "power_differential": 1.3,
@@ -120,6 +144,56 @@
       "trust": 0.5,
       "vulnerability": 1.3,
       "info_asymmetry": 0.8
+    },
+    "comedy": {
+      "stakes": 0.7,
+      "danger": 0.5,
+      "tension_floor": 2
+    },
+    "romantic_comedy": {
+      "stakes": 0.8,
+      "goal_misalignment": 1.2,
+      "black_moment_severity": 0.7
+    },
+    "love_triangle": {
+      "jealousy_factor": 1.5,
+      "goal_alignment": 0.6,
+      "info_asymmetry": 1.2
+    },
+    "redemption_arc": {
+      "moral_ambiguity_start": 8,
+      "moral_ambiguity_end": 3,
+      "trust_trajectory": "low_to_high"
+    },
+    "mentor_protege": {
+      "power_differential_start": 4,
+      "power_differential_end": 1,
+      "respect_builds_with_trust": true
+    },
+    "revenge_plot": {
+      "stakes": 1.3,
+      "goal_alignment": 0.5,
+      "moral_ambiguity": 1.4
+    },
+    "fish_out_of_water": {
+      "info_asymmetry": 1.5,
+      "world_complexity": 1.3,
+      "social_pressure": 1.2
+    },
+    "forbidden_love": {
+      "social_pressure": 1.8,
+      "stakes": 1.3,
+      "goal_misalignment": 1.2
+    },
+    "fake_relationship": {
+      "info_asymmetry": 1.4,
+      "vulnerability_trust_gap": 1.3,
+      "proximity": 1.5
+    },
+    "forced_proximity": {
+      "proximity": 2.0,
+      "desire_proximity_gap": 0.3,
+      "vulnerability": 1.2
     }
   }
 }

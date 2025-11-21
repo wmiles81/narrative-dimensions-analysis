@@ -1,0 +1,106 @@
+{
+  "plots": {
+    "main_plot": [
+      {
+        "stakes": 4,
+        "danger": 3,
+        "info_asymmetry": 8,
+        "trust": 3
+      },
+      {
+        "stakes": 5,
+        "danger": 4,
+        "info_asymmetry": 7,
+        "trust": 3
+      },
+      {
+        "stakes": 6,
+        "danger": 5,
+        "info_asymmetry": 6,
+        "trust": 4
+      },
+      {
+        "stakes": 8,
+        "danger": 7,
+        "info_asymmetry": 5,
+        "trust": 4
+      },
+      {
+        "stakes": 9,
+        "danger": 8,
+        "info_asymmetry": 3,
+        "trust": 5
+      },
+      {
+        "stakes": 7,
+        "danger": 4,
+        "info_asymmetry": 2,
+        "trust": 7
+      }
+    ],
+    "romance_subplot": [
+      {
+        "intimacy": 1,
+        "trust": 2,
+        "desire": 3,
+        "vulnerability": 1,
+        "goal_alignment": 4,
+        "proximity": 6
+      },
+      {
+        "intimacy": 2,
+        "trust": 3,
+        "desire": 5,
+        "vulnerability": 3,
+        "goal_alignment": 5,
+        "proximity": 7
+      },
+      {
+        "intimacy": 4,
+        "trust": 4,
+        "desire": 6,
+        "vulnerability": 4,
+        "goal_alignment": 6,
+        "proximity": 8
+      },
+      {
+        "intimacy": 3,
+        "trust": 2,
+        "desire": 7,
+        "vulnerability": 2,
+        "goal_alignment": 3,
+        "proximity": 7
+      },
+      {
+        "intimacy": 6,
+        "trust": 6,
+        "desire": 8,
+        "vulnerability": 7,
+        "goal_alignment": 8,
+        "proximity": 9
+      },
+      {
+        "intimacy": 8,
+        "trust": 8,
+        "desire": 9,
+        "vulnerability": 8,
+        "goal_alignment": 9,
+        "proximity": 10
+      }
+    ]
+  },
+  "configs": {
+    "main_plot": {
+      "genre": "thriller",
+      "subgenre": "psychological",
+      "custom_weights": null,
+      "description": "Detective solving serial killer case"
+    },
+    "romance_subplot": {
+      "genre": "romance",
+      "subgenre": "contemporary",
+      "custom_weights": null,
+      "description": "Detective falls for witness"
+    }
+  }
+}

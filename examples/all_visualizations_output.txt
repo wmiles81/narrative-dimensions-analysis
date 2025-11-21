@@ -1,0 +1,170 @@
+================================================================================
+VISUALIZATION TOOLS DEMONSTRATION
+Story: Dark Redemption (Dark Romance)
+================================================================================
+
+1. SINGLE DIMENSION PLOT - Intimacy
+--------------------------------------------------------------------------------
+Intimacy Trajectory
+
+  10 |                                                             
+   9 |                                                           ★ 
+   8 |                                                     ★       
+   7 |                                          ★                  
+   6 |                ★                    ★          ★            
+   5 |                     ★          ★                            
+   4 |          ★               ★                                  
+   3 |     ★                                                       
+   2 |★                                                            
+   1 |                                                             
+   0 |_____________________________________________________________
+       Beat 1                     Beat 6                    Beat 12
+
+Range: 2.0 to 9.0
+Change: +7.0 points
+
+
+2. MULTI-DIMENSION PLOT - Core Relationship Dimensions
+--------------------------------------------------------------------------------
+Multiple Dimensions
+
+  15 |                                          ■                 
+  14 |                                                            
+  13 |                     ■                    ●          ■     ★
+  12 |                ●         ■                     ■    ★     ●
+  11 |                                                            
+  10 |          ●     ■    ●               ■    ★                ■
+   9 |     ●    ■     ★               ■    ★          ★           
+   8 |                                                            
+   7 |●                    ★          ★                    ◆      
+   6 |     ■    ★     ◆         ★                                 
+   5 |                                                            
+   4 |◆    ★    ◆                          ◆          ◆           
+   3 |■    ◆                          ◆         ◆                 
+   2 |                                                            
+   1 |                     ◆    ◆                                 
+   0 |____________________________________________________________
+       ★=Intimacy ◆=Trust ●=Desire ■=Vulnerability 
+
+
+3. TENSION TRAJECTORY
+--------------------------------------------------------------------------------
+Tension Trajectory
+
+  10 |                                                            
+   9 |                                                            
+   8 |                                                            
+   7 |                                                            
+   6 |                    ████ ████           ████                
+   5 |                    ████ ████           ████                
+   4 |████ ████ ████ ████ ████ ████ ████ ████ ████ ████           
+   3 |████ ████ ████ ████ ████ ████ ████ ████ ████ ████ ████      
+   2 |████ ████ ████ ████ ████ ████ ████ ████ ████ ████ ████      
+   1 |████ ████ ████ ████ ████ ████ ████ ████ ████ ████ ████ ████ 
+   0 |____________________________________________________________
+          1    2    3    4    5    6    7    8    9   10   11   12 
+
+Average Tension: 4.6/10
+Peak Tension: 6.5/10 at Beat 6
+Lowest Tension: 1.9/10 at Beat 12
+
+
+4. TENSION HEATMAP
+--------------------------------------------------------------------------------
+Tension Heatmap
+
+Ch  1 ▒
+Ch  2 ▒
+Ch  3 ▒
+Ch  4 ▒
+Ch  5 ▓
+Ch  6 ▓
+Ch  7 ▒
+Ch  8 ▒
+Ch  9 ▓
+Ch 10 ▒
+Ch 11 ▒
+Ch 12 ░  ← Relief scene
+
+Legend: ░=Low ▒=Medium ▓=High █=Extreme
+
+
+5. PACING VELOCITY ANALYSIS
+--------------------------------------------------------------------------------
+Pacing Velocity
+
+ 2.2 |                     ★            
+ 1.9 |         ★              ★         
+ 1.7 |                           ★  ★   
+ 1.5 |               ★  ★               
+ 1.3 |★           ★                     
+ 1.1 |      ★                           
+ 0.9 |   ★                              
+ 0.6 |                                  
+ 0.4 |                                  
+ 0.2 |                                  
+ 0.0 |                              ____
+        1  2  3  4  5  6  7  8  9 10 11 
+
+Velocity: Avg 1.7 points/chapter
+
+
+6. POWER DIFFERENTIAL PLOT (Demonstrates Negative Scale)
+--------------------------------------------------------------------------------
+Power Differential Trajectory
+
+   5 |                                                             
+   4 |                                                             
+   3 |                                                             
+   2 |                                                             
+   1 |                                                             
+   0 |                                                     ★     ★ 
+  -1 |                                                ★            
+  -2 |                ★               ★    ★                       
+  -3 |★         ★               ★               ★                  
+  -4 |     ★               ★                                       
+  -5 |_____________________________________________________________
+       Beat 1                     Beat 6                    Beat 12
+
+Range: -4.0 to 0.0
+Change: +3.0 points
+
+
+7. TRAJECTORY COMPARISON - Planned vs Actual
+--------------------------------------------------------------------------------
+Trajectory Comparison: Trust
+
+  10 |                                                            
+   9 |                                                            
+   8 |                                                            
+   7 |                                                           ◈
+   6 |                ★                                           
+   5 |★         ★                          ★          ★    ◈      
+   4 |     ★          ◆               ★         ★                 
+   3 |◆         ◆          ★    ★          ◆          ◆           
+   2 |     ◆                          ◆         ◆                 
+   1 |                     ◆    ◆                                 
+   0 |____________________________________________________________
+       ★=Planned (Higher Trust) ◆=Actual (Betrayal Arc) ◈=Same
+
+Average Divergence: 1.7 points
+Maximum Divergence: 2.0 points at beat 1
+✓ Trajectories closely aligned
+
+
+================================================================================
+END OF DEMONSTRATION
+================================================================================
+
+Usage Examples:
+  # Generate full report
+  python3 scripts/visualize_trajectory.py examples/sample_trajectory.json --full-report
+
+  # Plot specific dimension
+  python3 scripts/visualize_trajectory.py examples/sample_trajectory.json --dimension intimacy
+
+  # Plot multiple dimensions
+  python3 scripts/visualize_trajectory.json --multi intimacy trust desire
+
+  # Save output to file
+  python3 scripts/visualize_trajectory.json --full-report --output report.txt

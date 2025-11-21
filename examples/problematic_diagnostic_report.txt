@@ -1,0 +1,82 @@
+======================================================================
+NARRATIVE DIAGNOSTIC REPORT
+======================================================================
+Genre: romance
+Trajectory Length: 10 beats
+Catalysts Provided: 0
+
+🚨 CRITICAL ISSUES (Must Fix)
+----------------------------------------------------------------------
+
+1. FLATLINE
+   Beat 2 has minimal dimensional movement (velocity: 0.00)
+   FIX: Beat 2: Add character development or relationship shift. At least 2-3 dimensions should move by 1+ points per scene.
+
+2. TELEPORTATION
+   Beat 1: desire jumped 3.0 points without catalyst event
+   FIX: Add a catalyst event at beat 1 to justify desire changing from 2.0 to 5.0. Examples: revelation, betrayal, sacrifice, confrontation.
+
+3. TELEPORTATION
+   Beat 1: info_asymmetry jumped 6.0 points without catalyst event
+   FIX: Add a catalyst event at beat 1 to justify info_asymmetry changing from 9.0 to 3.0. Examples: revelation, betrayal, sacrifice, confrontation.
+
+4. TELEPORTATION
+   Beat 3: trust jumped 6.0 points without catalyst event
+   FIX: Add a catalyst event at beat 3 to justify trust changing from 3.0 to 9.0. Examples: revelation, betrayal, sacrifice, confrontation.
+
+5. TELEPORTATION
+   Beat 4: trust jumped 5.0 points without catalyst event
+   FIX: Add a catalyst event at beat 4 to justify trust changing from 9.0 to 4.0. Examples: revelation, betrayal, sacrifice, confrontation.
+
+6. TELEPORTATION
+   Beat 5: trust jumped 4.0 points without catalyst event
+   FIX: Add a catalyst event at beat 5 to justify trust changing from 4.0 to 8.0. Examples: revelation, betrayal, sacrifice, confrontation.
+
+7. TELEPORTATION
+   Beat 6: trust jumped 5.0 points without catalyst event
+   FIX: Add a catalyst event at beat 6 to justify trust changing from 8.0 to 3.0. Examples: revelation, betrayal, sacrifice, confrontation.
+
+8. TELEPORTATION
+   Beat 7: trust jumped 6.0 points without catalyst event
+   FIX: Add a catalyst event at beat 7 to justify trust changing from 3.0 to 9.0. Examples: revelation, betrayal, sacrifice, confrontation.
+
+9. TELEPORTATION
+   Beat 9: intimacy jumped 3.0 points without catalyst event
+   FIX: Add a catalyst event at beat 9 to justify intimacy changing from 6.0 to 9.0. Examples: revelation, betrayal, sacrifice, confrontation.
+
+10. TELEPORTATION
+   Beat 9: goal_alignment jumped 3.0 points without catalyst event
+   FIX: Add a catalyst event at beat 9 to justify goal_alignment changing from 7.0 to 10.0. Examples: revelation, betrayal, sacrifice, confrontation.
+
+11. TELEPORTATION
+   Beat 9: vulnerability jumped 3.0 points without catalyst event
+   FIX: Add a catalyst event at beat 9 to justify vulnerability changing from 6.0 to 9.0. Examples: revelation, betrayal, sacrifice, confrontation.
+
+12. TELEPORTATION
+   Beat 9: stakes jumped 10.0 points without catalyst event
+   FIX: Add a catalyst event at beat 9 to justify stakes changing from 10.0 to 0.0. Examples: revelation, betrayal, sacrifice, confrontation.
+
+13. MISSING_BLACK_MOMENT
+   No crisis/black moment detected in expected range (beats 7-8)
+   FIX: Romance needs a dark moment around 75-80% where trust/alignment crashes. This is where everything seems lost. Add a major betrayal, misunderstanding, or sacrifice that drops trust or goal_alignment to ≤3. Current trust/alignment in range: beat 7: trust=9, align=6, beat 8: trust=9, align=7
+
+
+⚠️  WARNINGS (Should Address)
+----------------------------------------------------------------------
+
+1. INFO_DUMP
+   Beat 1: info_asymmetry drops 6.0 points (9.0 → 3.0)
+   FIX: Beat 1: Spread revelations across multiple scenes. Instead of explaining everything at once, reveal gradually through action, dialogue, and discovery. Drop info_asymmetry by 1-2 points per scene, not 6.
+
+
+💪 STRENGTHS (What's Working)
+----------------------------------------------------------------------
+
+1. CHARACTER_GROWTH
+   Strong character development: intimacy(+8), trust(+7), desire(+8), goal_alignment(+8), vulnerability(+8), proximity(+6)
+   Why it works: Characters show clear progression and transformation
+
+
+======================================================================
+OVERALL: 13 critical issues require immediate attention.
+======================================================================

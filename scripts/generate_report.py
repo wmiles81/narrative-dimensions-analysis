@@ -5,22 +5,40 @@ Generate comprehensive dimensional analysis reports for stories.
 
 import json
 import sys
+from pathlib import Path
 from typing import Dict, List, Optional
 from datetime import datetime
 
+# Import visualization tools
+PROJECT_ROOT = Path(__file__).parent.parent
+sys.path.insert(0, str(PROJECT_ROOT / 'scripts'))
+
+try:
+    from visualize_trajectory import (
+        plot_dimension_ascii,
+        plot_multi_dimension,
+        plot_tension_over_time,
+        plot_velocity_graph
+    )
+    VISUALIZATIONS_AVAILABLE = True
+except ImportError:
+    VISUALIZATIONS_AVAILABLE = False
+
 class DimensionalReport:
-    def __init__(self, title: str, genre: str, content_level: str):
+    def __init__(self, title: str, genre: str, content_level: str, include_visualizations: bool = False):
         """
         Initialize report generator.
-        
+
         Args:
             title: Story/chapter/series title
             genre: Primary genre
             content_level: 'concept', 'chapter', 'book', or 'series'
+            include_visualizations: Whether to include ASCII visualizations
         """
         self.title = title
         self.genre = genre
         self.content_level = content_level
+        self.include_visualizations = include_visualizations and VISUALIZATIONS_AVAILABLE
         self.timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
     
     def generate_full_report(self,
@@ -71,6 +89,13 @@ class DimensionalReport:
             report.append("-" * 40)
             report.extend(self._analyze_trajectory(trajectory))
             report.append("")
+
+            # Add ASCII visualizations if enabled
+            if self.include_visualizations:
+                report.append("VISUAL TRAJECTORY PLOTS")
+                report.append("-" * 40)
+                report.extend(self._add_visualizations(trajectory))
+                report.append("")
         
         # Diagnostic Assessment
         report.append("DIAGNOSTIC ASSESSMENT")
@@ -197,6 +222,9 @@ class DimensionalReport:
         for i in range(1, len(trajectory)):
             for dim in trajectory[i]:
                 if dim in trajectory[i-1]:
+                    # Skip non-numeric fields
+                    if not isinstance(trajectory[i][dim], (int, float)) or not isinstance(trajectory[i-1][dim], (int, float)):
+                        continue
                     movement = abs(trajectory[i][dim] - trajectory[i-1][dim])
                     total_movement += movement
                     dimensions_tracked.add(dim)
@@ -215,6 +243,9 @@ class DimensionalReport:
         changes = {}
         for dim in first:
             if dim in last:
+                # Skip non-numeric fields
+                if not isinstance(first[dim], (int, float)) or not isinstance(last[dim], (int, float)):
+                    continue
                 change = last[dim] - first[dim]
                 if abs(change) >= 1:
                     changes[dim] = change
@@ -237,6 +268,9 @@ class DimensionalReport:
             static_dims = []
             for dim in trajectory[0]:
                 if dim in trajectory[-1]:
+                    # Skip non-numeric fields
+                    if not isinstance(trajectory[0][dim], (int, float)) or not isinstance(trajectory[-1][dim], (int, float)):
+                        continue
                     if abs(trajectory[-1][dim] - trajectory[0][dim]) < 1:
                         static_dims.append(dim)
             
@@ -334,17 +368,71 @@ class DimensionalReport:
         """Calculate recent movement in trajectory."""
         if len(trajectory) < 2:
             return 0
-        
+
         recent = trajectory[-2:]
         total_movement = 0
         dims_counted = 0
-        
+
         for dim in recent[0]:
             if dim in recent[1]:
+                # Skip non-numeric fields
+                if not isinstance(recent[0][dim], (int, float)) or not isinstance(recent[1][dim], (int, float)):
+                    continue
                 total_movement += abs(recent[1][dim] - recent[0][dim])
                 dims_counted += 1
-        
+
         return total_movement / dims_counted if dims_counted > 0 else 0
+
+    def _add_visualizations(self, trajectory: List[Dict]) -> List[str]:
+        """Add ASCII visualizations to report."""
+        lines = []
+
+        if not VISUALIZATIONS_AVAILABLE:
+            lines.append("Visualizations not available - visualize_trajectory module not found")
+            return lines
+
+        # Get available dimensions
+        all_dims = set()
+        for state in trajectory:
+            all_dims.update(state.keys())
+
+        # Core dimensions to visualize
+        core_dims = ['intimacy', 'trust', 'desire', 'vulnerability']
+        plot_dims = [d for d in core_dims if d in all_dims]
+
+        # 1. Multi-dimension plot
+        if len(plot_dims) >= 2:
+            lines.append("Core Relationship Dimensions:")
+            lines.append("")
+            try:
+                viz = plot_multi_dimension(trajectory, plot_dims[:3], height=10, width=50)
+                lines.append(viz)
+            except Exception as e:
+                lines.append(f"Error generating multi-dimension plot: {e}")
+            lines.append("")
+
+        # 2. Tension over time
+        lines.append("Tension Trajectory:")
+        lines.append("")
+        try:
+            viz = plot_tension_over_time(trajectory, genre=self.genre)
+            lines.append(viz)
+        except Exception as e:
+            lines.append(f"Error generating tension plot: {e}")
+        lines.append("")
+
+        # 3. Pacing velocity
+        if len(trajectory) >= 2:
+            lines.append("Pacing Velocity:")
+            lines.append("")
+            try:
+                viz = plot_velocity_graph(trajectory)
+                lines.append(viz)
+            except Exception as e:
+                lines.append(f"Error generating velocity plot: {e}")
+            lines.append("")
+
+        return lines
 
 # Example usage
 if __name__ == "__main__":

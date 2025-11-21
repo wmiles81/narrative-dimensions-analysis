@@ -1,0 +1,12 @@
+{
+  "name": "high-stakes-action",
+  "weights": {
+    "stakes": 0.3,
+    "danger": 0.25,
+    "info_asymmetry": 0.15,
+    "goal_misalignment": 0.1,
+    "vulnerability_trust_gap": 0.1,
+    "power_differential": 0.1
+  },
+  "note": "Custom tension formula weights"
+}

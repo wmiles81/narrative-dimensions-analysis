@@ -1,0 +1,201 @@
+{
+  "story_title": "Love in the Time of Deadlines",
+  "genre": "romance",
+  "metadata": {
+    "created": "2025-11-21T23:30:12.738373",
+    "last_modified": "2025-11-21T23:30:12.738419"
+  },
+  "beats": [
+    {
+      "name": "Meet Cute",
+      "percent": 5,
+      "dimensions": {
+        "intimacy": 0,
+        "trust": 3,
+        "desire": 2,
+        "vulnerability": 1,
+        "goal_alignment": 2,
+        "power_differential": 0,
+        "info_asymmetry": 4,
+        "stakes": 4,
+        "proximity": 2
+      },
+      "notes": "They meet at a coffee shop - he spills coffee on her laptop"
+    },
+    {
+      "name": "Forced Proximity",
+      "percent": 20,
+      "dimensions": {
+        "intimacy": 2,
+        "trust": 4,
+        "desire": 5,
+        "vulnerability": 2,
+        "goal_alignment": 4,
+        "power_differential": 0,
+        "info_asymmetry": 3,
+        "stakes": 5,
+        "proximity": 8
+      },
+      "notes": "Boss assigns them to same project - must work together"
+    },
+    {
+      "name": "First Kiss",
+      "percent": 40,
+      "dimensions": {
+        "intimacy": 5,
+        "trust": 5,
+        "desire": 8,
+        "vulnerability": 6,
+        "goal_alignment": 6,
+        "power_differential": 0,
+        "info_asymmetry": 2,
+        "stakes": 6,
+        "proximity": 10
+      },
+      "notes": "Late night working - tension breaks into passionate kiss"
+    },
+    {
+      "name": "Secret Revealed",
+      "percent": 60,
+      "dimensions": {
+        "intimacy": 6,
+        "trust": 2,
+        "desire": 8,
+        "vulnerability": 7,
+        "goal_alignment": 3,
+        "power_differential": -2,
+        "info_asymmetry": 8,
+        "stakes": 8,
+        "proximity": 5
+      },
+      "notes": "She discovers he was assigned to evaluate her for promotion"
+    },
+    {
+      "name": "Black Moment",
+      "percent": 75,
+      "dimensions": {
+        "intimacy": 3,
+        "trust": 1,
+        "desire": 8,
+        "vulnerability": 8,
+        "goal_alignment": 2,
+        "power_differential": 0,
+        "info_asymmetry": 1,
+        "stakes": 9,
+        "proximity": 1
+      },
+      "notes": "She quits and prepares to move to another city"
+    },
+    {
+      "name": "Grand Gesture",
+      "percent": 90,
+      "dimensions": {
+        "intimacy": 6,
+        "trust": 5,
+        "desire": 9,
+        "vulnerability": 10,
+        "goal_alignment": 7,
+        "power_differential": 0,
+        "info_asymmetry": 0,
+        "stakes": 9,
+        "proximity": 8
+      },
+      "notes": "He quits his job and follows her - full confession"
+    },
+    {
+      "name": "HEA",
+      "percent": 100,
+      "dimensions": {
+        "intimacy": 9,
+        "trust": 8,
+        "desire": 9,
+        "vulnerability": 8,
+        "goal_alignment": 10,
+        "power_differential": 0,
+        "info_asymmetry": 0,
+        "stakes": 4,
+        "proximity": 10
+      },
+      "notes": "They start their own business together - partnership in life and work"
+    }
+  ],
+  "trajectory": [
+    {
+      "intimacy": 0,
+      "trust": 3,
+      "desire": 2,
+      "vulnerability": 1,
+      "goal_alignment": 2,
+      "power_differential": 0,
+      "info_asymmetry": 4,
+      "stakes": 4,
+      "proximity": 2
+    },
+    {
+      "intimacy": 2,
+      "trust": 4,
+      "desire": 5,
+      "vulnerability": 2,
+      "goal_alignment": 4,
+      "power_differential": 0,
+      "info_asymmetry": 3,
+      "stakes": 5,
+      "proximity": 8
+    },
+    {
+      "intimacy": 5,
+      "trust": 5,
+      "desire": 8,
+      "vulnerability": 6,
+      "goal_alignment": 6,
+      "power_differential": 0,
+      "info_asymmetry": 2,
+      "stakes": 6,
+      "proximity": 10
+    },
+    {
+      "intimacy": 6,
+      "trust": 2,
+      "desire": 8,
+      "vulnerability": 7,
+      "goal_alignment": 3,
+      "power_differential": -2,
+      "info_asymmetry": 8,
+      "stakes": 8,
+      "proximity": 5
+    },
+    {
+      "intimacy": 3,
+      "trust": 1,
+      "desire": 8,
+      "vulnerability": 8,
+      "goal_alignment": 2,
+      "power_differential": 0,
+      "info_asymmetry": 1,
+      "stakes": 9,
+      "proximity": 1
+    },
+    {
+      "intimacy": 6,
+      "trust": 5,
+      "desire": 9,
+      "vulnerability": 10,
+      "goal_alignment": 7,
+      "power_differential": 0,
+      "info_asymmetry": 0,
+      "stakes": 9,
+      "proximity": 8
+    },
+    {
+      "intimacy": 9,
+      "trust": 8,
+      "desire": 9,
+      "vulnerability": 8,
+      "goal_alignment": 10,
+      "power_differential": 0,
+      "info_asymmetry": 0,
+      "stakes": 4,
+      "proximity": 10
+    }
+  ]
+}
