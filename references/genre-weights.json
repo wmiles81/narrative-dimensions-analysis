@@ -1,0 +1,125 @@
+{
+  "romance": {
+    "contemporary": {
+      "stakes": 0.15,
+      "info_asymmetry": 0.10,
+      "goal_misalignment": 0.15,
+      "vulnerability_trust_gap": 0.25,
+      "desire_proximity_gap": 0.25,
+      "power_differential": 0.10
+    },
+    "dark": {
+      "stakes": 0.25,
+      "info_asymmetry": 0.15,
+      "goal_misalignment": 0.10,
+      "vulnerability_trust_gap": 0.15,
+      "desire_proximity_gap": 0.15,
+      "power_differential": 0.20
+    },
+    "paranormal": {
+      "stakes": 0.20,
+      "info_asymmetry": 0.20,
+      "goal_misalignment": 0.10,
+      "vulnerability_trust_gap": 0.15,
+      "desire_proximity_gap": 0.20,
+      "power_differential": 0.15
+    },
+    "enemies_to_lovers": {
+      "stakes": 0.15,
+      "info_asymmetry": 0.10,
+      "goal_misalignment": 0.30,
+      "vulnerability_trust_gap": 0.15,
+      "desire_proximity_gap": 0.20,
+      "power_differential": 0.10
+    },
+    "serial_killer": {
+      "stakes": 0.30,
+      "info_asymmetry": 0.25,
+      "goal_misalignment": 0.05,
+      "vulnerability_trust_gap": 0.10,
+      "desire_proximity_gap": 0.10,
+      "power_differential": 0.20,
+      "danger": 0.15,
+      "moral_ambiguity": 0.10
+    }
+  },
+  "thriller": {
+    "psychological": {
+      "stakes": 0.20,
+      "info_asymmetry": 0.25,
+      "goal_misalignment": 0.15,
+      "vulnerability_trust_gap": 0.10,
+      "power_differential": 0.15,
+      "danger": 0.15
+    },
+    "action": {
+      "stakes": 0.30,
+      "info_asymmetry": 0.10,
+      "goal_misalignment": 0.10,
+      "power_differential": 0.10,
+      "danger": 0.30,
+      "physical_proximity": 0.10
+    }
+  },
+  "mystery": {
+    "cozy": {
+      "stakes": 0.10,
+      "info_asymmetry": 0.40,
+      "goal_misalignment": 0.15,
+      "trust": 0.15,
+      "mystery": 0.20
+    },
+    "noir": {
+      "stakes": 0.20,
+      "info_asymmetry": 0.25,
+      "goal_misalignment": 0.15,
+      "trust": 0.10,
+      "power_differential": 0.15,
+      "moral_ambiguity": 0.15
+    }
+  },
+  "fantasy": {
+    "epic": {
+      "stakes": 0.30,
+      "goal_misalignment": 0.20,
+      "power_differential": 0.15,
+      "world_complexity": 0.20,
+      "trust": 0.15
+    },
+    "romantic": {
+      "stakes": 0.15,
+      "vulnerability_trust_gap": 0.20,
+      "desire_proximity_gap": 0.25,
+      "power_differential": 0.15,
+      "world_complexity": 0.10,
+      "magic_tension": 0.15
+    }
+  },
+  "modifiers": {
+    "mafia": {
+      "power_differential": 1.3,
+      "danger": 1.5,
+      "stakes": 1.2
+    },
+    "stalker": {
+      "info_asymmetry": 1.5,
+      "proximity": 1.3,
+      "power_differential": 1.2
+    },
+    "captive": {
+      "power_differential": 1.5,
+      "proximity": 0.5,
+      "goal_misalignment": 1.3
+    },
+    "arranged_marriage": {
+      "proximity": 0.7,
+      "goal_misalignment": 1.4,
+      "social_pressure": 1.5
+    },
+    "second_chance": {
+      "trust": 0.5,
+      "vulnerability": 1.3,
+      "info_asymmetry": 0.8
+    }
+  }
+}
