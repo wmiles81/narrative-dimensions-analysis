@@ -7,8 +7,15 @@ Tracks axis progressions, orbital mechanics, and waveform analysis.
 import json
 import sys
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Optional
 import math
+
+# Import genre profiles
+sys.path.insert(0, str(Path(__file__).parent.parent / 'references'))
+try:
+    from npe_genre_profiles import NPE_GENRE_PROFILES
+except ImportError:
+    NPE_GENRE_PROFILES = {}
 
 def load_trajectory(filepath: Path) -> List[Dict]:
     """Load trajectory JSON file."""
@@ -292,13 +299,117 @@ def categorize_ia_state(ia_value: float) -> str:
     else:
         return "Transformed/Whole"
 
+def validate_genre_constraints(trajectory: List[Dict], genre: str = 'cozy_fantasy') -> Dict:
+    """Validate trajectory against genre-specific NPE constraints."""
+
+    if genre not in NPE_GENRE_PROFILES:
+        return {
+            'valid': False,
+            'error': f'Unknown genre: {genre}. Available: {list(NPE_GENRE_PROFILES.keys())}'
+        }
+
+    profile = NPE_GENRE_PROFILES[genre]
+    violations = []
+    warnings = []
+
+    # Extract data
+    ia_values = [s.get('IA', 0) for s in trajectory]
+    entropy_vals = calculate_entropy(trajectory)
+    waveform = analyze_waveform(ia_values)
+
+    # Check waveform constraints
+    wf_constraints = profile['waveform_constraints']
+    if waveform.get('amplitude', 0) > wf_constraints['amplitude']['max']:
+        violations.append(
+            f"Waveform amplitude {waveform['amplitude']:.2f} exceeds {genre} max "
+            f"({wf_constraints['amplitude']['max']:.2f}). "
+            f"{wf_constraints['amplitude']['note']}"
+        )
+
+    if waveform.get('frequency', 0) > wf_constraints['frequency']['max']:
+        violations.append(
+            f"Waveform frequency {waveform['frequency']:.3f} exceeds {genre} max "
+            f"({wf_constraints['frequency']['max']:.3f}). "
+            f"{wf_constraints['frequency']['note']}"
+        )
+
+    # Check entropy constraints
+    ent_constraints = profile['entropy_constraints']
+    max_entropy = max(entropy_vals)
+    avg_entropy = sum(entropy_vals) / len(entropy_vals)
+
+    if max_entropy > ent_constraints['peak_allowed']:
+        violations.append(
+            f"Peak entropy {max_entropy:.2f} exceeds {genre} peak "
+            f"({ent_constraints['peak_allowed']:.2f}). "
+            f"{ent_constraints['note']}"
+        )
+
+    if avg_entropy > ent_constraints['max_sustained']:
+        warnings.append(
+            f"Average entropy {avg_entropy:.2f} exceeds {genre} sustained max "
+            f"({ent_constraints['max_sustained']:.2f})"
+        )
+
+    # Check IA axis profile
+    ia_profile = profile['axis_profiles']['IA']
+
+    if ia_profile.get('must_cross_zero'):
+        crosses_zero = any(ia_values[i] < 0 and ia_values[i+1] >= 0
+                          for i in range(len(ia_values)-1))
+        if not crosses_zero:
+            violations.append(
+                f"{genre} requires IA polarity flip (crossing 0). "
+                f"{ia_profile.get('note', '')}"
+            )
+
+    # Check final IA value
+    final_ia = ia_values[-1]
+    final_range = ia_profile.get('final_range', (-1, 1))
+    if not (final_range[0] <= final_ia <= final_range[1]):
+        violations.append(
+            f"Final IA value {final_ia:.2f} outside {genre} range "
+            f"({final_range[0]:.2f} to {final_range[1]:.2f})"
+        )
+
+    # Check threshold requirements
+    thresh_reqs = profile.get('threshold_requirements', {})
+    thresholds = detect_thresholds(trajectory)
+
+    if thresh_reqs.get('dark_night_required'):
+        has_dark_night = any(t['type'] == 'Crisis/Dark Night' for t in thresholds)
+        if not has_dark_night:
+            violations.append(f"{genre} requires a dark night moment")
+
+    return {
+        'valid': len(violations) == 0,
+        'genre': genre,
+        'violations': violations,
+        'warnings': warnings,
+        'profile_notes': {
+            'waveform': wf_constraints,
+            'entropy': ent_constraints,
+            'description': profile.get('description', '')
+        }
+    }
+
 # Main execution
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python npe_analyzer.py <trajectory_file>")
+        print("Usage: python npe_analyzer.py <trajectory_file> [--genre GENRE]")
+        print("\nAvailable genres:")
+        for genre in NPE_GENRE_PROFILES.keys():
+            print(f"  - {genre}")
         sys.exit(1)
 
     filepath = Path(sys.argv[1])
+
+    # Parse genre argument
+    genre = 'cozy_fantasy'  # default
+    if '--genre' in sys.argv:
+        genre_idx = sys.argv.index('--genre')
+        if genre_idx + 1 < len(sys.argv):
+            genre = sys.argv[genre_idx + 1]
 
     if not filepath.exists():
         print(f"Error: File not found: {filepath}")
@@ -308,3 +419,30 @@ if __name__ == "__main__":
     report = generate_npe_report(trajectory)
 
     print(report)
+
+    # Add genre validation section
+    if NPE_GENRE_PROFILES:
+        print("\n" + "=" * 70)
+        print("GENRE CONSTRAINT VALIDATION")
+        print("=" * 70)
+
+        validation = validate_genre_constraints(trajectory, genre)
+
+        print(f"\nGenre: {validation['genre']}")
+        print(f"Description: {validation['profile_notes'].get('description', '')}")
+        print(f"\nValid: {'✓ YES' if validation['valid'] else '✗ NO'}")
+
+        if validation.get('violations'):
+            print(f"\n🚨 VIOLATIONS ({len(validation['violations'])}):")
+            for v in validation['violations']:
+                print(f"  - {v}")
+
+        if validation.get('warnings'):
+            print(f"\n⚠️  WARNINGS ({len(validation['warnings'])}):")
+            for w in validation['warnings']:
+                print(f"  - {w}")
+
+        if validation['valid']:
+            print(f"\n✓ Trajectory complies with {genre} physics constraints")
+
+        print("\n" + "=" * 70)
