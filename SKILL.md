@@ -1,6 +1,6 @@
 ---
 name: narrative-dimensions-analysis
-description: Physics-inspired story analysis system that treats narrative as trajectories through dimensional space. Tracks dimensions like intimacy, trust, power, and stakes to calculate tension, validate pacing, and diagnose story problems. Genre-aware with formulas for romance, thriller, mystery, and fantasy. Use when analyzing story structure, engineering tension, validating character arcs, diagnosing pacing issues, or generating dimensional targets for scenes.
+description: Physics-inspired story analysis system with two complementary frameworks - (1) Dimensional analysis tracking 9+ dimensions (intimacy, trust, power, stakes, etc.) for scene-level tension engineering and pacing diagnostics, and (2) Narrative Physics Engine (NPE) with composite axes (IA/RA/EA/TA) for arc-level planning with genre-specific physics constraints. Supports 7 genres with waveform analysis, entropy tracking, and polarity flip detection. Use for story structure analysis, tension engineering, character arc validation, pacing diagnostics, or multi-genre trajectory planning.
 # Narrative Dimensions Analysis System
 ---
 
@@ -134,18 +134,132 @@ See `references/genre-configs.md` for detailed patterns
 - Black moment validation
 - Ending coordinate check
 
+## Narrative Physics Engine (NPE)
+
+The NPE system provides a complementary high-level physics framework using composite axes for arc planning and validation across multiple genres.
+
+### NPE Composite Axes
+
+**IA (Internal Axis)**: Character's internal state (-1 to +1)
+- Negative = Wounded, broken, in denial
+- Zero = Transitional moment (polarity flip)
+- Positive = Healed, whole, self-aware
+- Calculated from: self_worth, emotional_regulation dimensions
+
+**RA (Relational Axis)**: Relationship distance as orbital mechanics (0-180°)
+- 0° = Perfect union, no distance
+- 90° = Perpendicular, maximum tension
+- 180° = Complete separation, bond broken
+- Tracks relationship geometry, not just closeness
+
+**EA (Environmental Axis)**: External pressure (-1 to +1)
+- Measures forces acting on character from outside
+- World stakes, antagonistic forces, circumstances
+- Calculated from: stakes, danger, social_pressure
+
+**TA (Task Axis)**: Quest/goal progression (0 to +1)
+- 0 = Quest not started or failing
+- 1 = Quest complete/goal achieved
+- Calculated from: goal_alignment, info_asymmetry resolution
+
+### NPE Physics Constraints
+
+**Waveform Analysis**:
+- Amplitude: Emotional swing range (genre-specific limits)
+- Frequency: Rate of emotional oscillation
+- Phase: Rising/falling state at any point
+
+**Entropy**: Narrative disorder (0-1.0)
+- Low entropy = Ordered, predictable, safe
+- High entropy = Chaotic, unpredictable, dangerous
+- Genre-specific tolerance levels
+
+**Polarity Flip**: Critical moment when IA crosses zero
+- Character shifts from broken to healing
+- Must be earned through dimensional progression
+- Timing varies by genre
+
+### Multi-Genre NPE Profiles
+
+The system includes physics constraints for 7 genres:
+
+1. **Cozy Fantasy**: Low amplitude (1.5 max), must cross zero, entropy ≤ 0.6
+2. **Psychological Thriller**: High amplitude (2.5 max), no zero-crossing required, entropy ≤ 1.0
+3. **Dark Romance**: Medium-high amplitude (2.0), late polarity flip, entropy ≤ 0.95
+4. **Epic Fantasy**: High amplitude, extended arcs, entropy ≤ 0.85
+5. **Psychological Horror**: Maximum amplitude (2.5), can end broken, entropy ≤ 1.0
+6. **Romantic Comedy**: Moderate amplitude (1.8), rapid oscillation, entropy ≤ 0.55
+7. **Cozy Mystery**: Low amplitude (1.4), controlled chaos, entropy ≤ 0.5
+
+See `references/npe_genre_profiles.py` for complete constraint definitions.
+
+### NPE Analysis Capabilities
+
+**Axis Progression Tracking**:
+- Monitor IA wound-to-growth trajectory
+- Track RA orbital closure/distance
+- Validate EA pressure curves
+- Measure TA quest completion arc
+
+**Genre Validation**:
+- Check waveform amplitude against genre limits
+- Verify entropy stays within genre tolerance
+- Validate required trajectory patterns (e.g., must cross zero)
+- Confirm ending states match genre expectations
+
+**Physics Diagnostics**:
+- Dark Night detection (all axes at crisis point)
+- Polarity flip identification and validation
+- Entropy spike analysis
+- Waveform frequency/amplitude violations
+
+### NPE + Dimensions Integration
+
+The two systems work complementarily:
+
+**NPE for high-level planning**:
+- Overall arc shape and physics
+- Genre constraint validation
+- Critical moment identification
+
+**Dimensions for scene execution**:
+- Granular state tracking
+- Tension calculation
+- Moment-to-moment pacing
+
+**Bidirectional conversion**:
+```python
+# NPE axes derived from dimensions
+IA = (self_worth / 5) - 1
+RA_orbit = 180 - ((intimacy + trust) / 20 * 180)
+EA = (stakes / 10) * 2 - 1
+TA = (goal_alignment - info_asymmetry) / 10
+```
+
 ## Scripts
 
+### Dimensional Analysis
 - `scripts/calculate_tension.py` - Compute tension from dimensional state
 - `scripts/validate_trajectory.py` - Check if arc is properly earned
 - `scripts/generate_report.py` - Create full dimensional analysis report
 
+### NPE Analysis
+- `scripts/npe_analyzer.py` - Analyze NPE axes, waveform, entropy, genre validation
+- `scripts/npe_visualizer.py` - Generate ASCII visualizations of NPE progression
+- `scripts/convert_dimensions_to_npe.py` - Convert dimensional trajectory to NPE axes
+
 ## References
 
+### Dimensional System
 - `references/genre-weights.json` - Tension formula weights by genre
 - `references/genre-configs.md` - Detailed genre conventions and constraints
 - `references/catalyst-events.md` - Events that justify dimensional jumps
 - `references/diagnostic-patterns.md` - Common problems and solutions
+
+### NPE System
+- `references/npe_genre_profiles.py` - Complete physics constraints for 7 genres
+- `NPE_MULTI_GENRE_GUIDE.md` - Technical guide to multi-genre NPE analysis
+- `AUTHOR_GUIDE.md` - Non-technical guide for authors using NPE in Claude Chat
 
 ## Usage Examples
 
@@ -168,10 +282,35 @@ End: power_diff=0, trust=8, stakes=personal, desire=10
 ```
 Target configuration:
 - Stakes: 9
-- Trust: 2  
+- Trust: 2
 - Information Asymmetry: 8
 - Vulnerability: 7
 - Physical Proximity: 8 (forced closeness)
+```
+
+### NPE Arc Planning (Cozy Fantasy)
+```
+Genre: Cozy Fantasy
+Chapters: 26
+
+Chapter 1: IA=-0.85 (wounded), RA=160° (distant), EA=0.3, TA=0
+Chapter 17: IA=-0.90 (DARK NIGHT), RA=160°, EA=1.0, TA=0
+Chapter 22: IA=0 (POLARITY FLIP), RA=90°, EA=0.6, TA=0.5
+Chapter 26: IA=+0.75 (healed), RA=60° (close), EA=0.2, TA=0.9
+
+Validation: ✓ Crosses zero, ✓ Amplitude within 1.5, ✓ Entropy ≤ 0.6
+```
+
+### Multi-Genre Validation
+```
+# Check if psychological thriller arc violates genre physics
+python scripts/npe_analyzer.py trajectory.json --genre psychological_thriller
+
+# Validates:
+- Waveform amplitude ≤ 2.5
+- Entropy spikes ≤ 1.0
+- No zero-crossing requirement (can end broken)
+- Dark night timing and depth
 ```
 
 ## Terminology & Calculation Clarifications
