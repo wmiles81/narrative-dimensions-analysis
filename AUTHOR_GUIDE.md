@@ -459,6 +459,528 @@ What needs adjusting?
 
 ---
 
+## The Narrative Physics Engine (NPE): Big Picture Arc Planning
+
+### What's the Difference Between Dimensions and NPE?
+
+Think of it like this:
+
+**Dimensions** = Scene-by-scene, chapter-by-chapter tracking
+- "Is this scene working?"
+- "Why does Chapter 10 feel flat?"
+- Zoomed in, detailed
+
+**NPE** = Big picture, whole-arc physics
+- "Does my overall character arc work?"
+- "Is my genre physics correct?"
+- Zoomed out, structural
+
+**You can use both, or just one, or neither!** They're tools, not rules.
+
+---
+
+### The Four NPE Axes (In Plain English)
+
+Instead of tracking 9+ dimensions, NPE tracks 4 composite axes:
+
+#### 1. **IA (Internal Axis)**: Is your character wounded or whole?
+Scale: -1 (broken) to +1 (healed)
+
+- **-1 to 0**: Wounded, broken, in denial
+  - Example: "I'm not good enough" / "I don't deserve love"
+- **0**: The turning point (Polarity Flip)
+  - Example: "Maybe I can change" / First moment of hope
+- **0 to +1**: Healing, growing, becoming whole
+  - Example: "I am worthy" / "I belong"
+
+**For authors:** Track how broken your character starts and how healed they end.
+
+#### 2. **RA (Relational Axis)**: How far apart are they?
+Scale: 0° (together) to 180° (broken apart)
+
+Think of it like distance around a circle:
+- **0-30°**: Close, intimate, together
+- **90°**: Maximum tension, perpendicular
+- **160-180°**: Distant, broken, separated
+
+**For authors:** Track the relationship distance from start to end.
+
+#### 3. **EA (Environmental Axis)**: How much external pressure?
+Scale: -1 (low) to +1 (high)
+
+- **Low (around 0)**: Peaceful, safe circumstances
+- **High (around 1.0)**: Intense external pressure, danger, world stakes
+
+**For authors:** Track how much the world is pushing on your character.
+
+#### 4. **TA (Task Axis)**: Is the quest progressing?
+Scale: 0 (not started) to 1 (complete)
+
+- **0**: Quest not started or failing
+- **0.5**: Midpoint, making progress
+- **1.0**: Quest complete, goal achieved
+
+**For authors:** Track plot/quest completion.
+
+---
+
+### NPE Genre Physics (The Simple Version)
+
+Different genres have different "physics rules" for how much characters can swing emotionally:
+
+#### **Cozy Fantasy / Cozy Mystery**
+- ✓ Must start wounded (-0.8) and end healed (+0.7 or better)
+- ✓ Emotional swings stay gentle (max amplitude: 1.5)
+- ✓ Even the dark night isn't traumatic
+- ✓ Must cross zero (polarity flip required)
+
+#### **Psychological Thriller / Horror**
+- ✓ Can have intense emotional swings (max amplitude: 2.5)
+- ✓ Can end wounded (doesn't need to cross zero)
+- ✓ High chaos allowed
+- ✓ Dark night can be devastating
+
+#### **Dark Romance**
+- ✓ Intense emotional swings (max amplitude: 2.0)
+- ✓ Must cross zero, but late (80%+ through story)
+- ✓ Can sustain high tension longer
+- ✓ Must end healed for the relationship to work
+
+#### **Romantic Comedy**
+- ✓ Moderate swings (max amplitude: 1.8)
+- ✓ Rapid oscillation (lots of ups and downs)
+- ✓ Must cross zero early-ish
+- ✓ Low chaos overall
+
+---
+
+### NPE Templates for Claude Chat
+
+#### Template: NPE Arc Planning
+
+```
+I'm planning a [GENRE] story. Help me design the NPE arc.
+
+Genre: [cozy fantasy / dark romance / thriller / etc.]
+Chapters: [number]
+
+Main character starts:
+- IA (internal state): [wounded / broken / in denial]
+- RA (relationship distance): [far apart / strangers / separated]
+
+Main character ends:
+- IA: [healed / whole / self-aware]
+- RA: [close / intimate / together]
+
+Where should the polarity flip happen (when IA crosses zero)?
+Where should the dark night be?
+Does this match [GENRE] physics?
+```
+
+**Example:**
+```
+I'm planning a cozy fantasy story. Help me design the NPE arc.
+
+Genre: Cozy fantasy
+Chapters: 26
+
+Main character (Verity) starts:
+- IA: Very wounded, feels inadequate as a librarian
+- RA: Distant from love interest (grumpy baker Roric)
+
+Main character ends:
+- IA: Healed, confident, belongs in community
+- RA: Close, romantic relationship with Roric
+
+Where should the polarity flip happen (when IA crosses zero)?
+Where should the dark night be?
+Does this match cozy fantasy physics?
+```
+
+---
+
+#### Template: Genre Physics Validation
+
+```
+I finished my [GENRE] draft. Does it violate genre physics?
+
+Genre: [your genre]
+
+Character arc:
+- Starts: IA = [wounded/neutral/healed]
+- Dark night: IA = [lowest point]
+- Ends: IA = [final state]
+
+Relationship arc:
+- Starts: RA = [distant/close]
+- Ends: RA = [final distance]
+
+Story length: [X chapters]
+Dark night location: Chapter [X] ([Y]% through)
+
+Does this match [GENRE] constraints?
+```
+
+---
+
+### Common NPE Conversations
+
+#### "When Should the Polarity Flip Happen?"
+
+**You say:**
+```
+I'm writing a 24-chapter cozy mystery. My protagonist starts feeling
+inadequate (IA around -0.7). When should she cross zero to start healing?
+```
+
+**Claude might say:**
+```
+For cozy mystery, the polarity flip should happen around 75-80%:
+
+Chapter 1-17: IA stays negative (wounded, doubting)
+Chapter 18: Dark night (IA drops to -0.9)
+Chapter 19-20: Recovery begins
+Chapter 20: POLARITY FLIP (IA crosses 0)
+Chapter 20-24: IA rises to +0.6 or +0.7 (healed)
+
+The flip happens AFTER the dark night, during recovery.
+
+Why this matters:
+- Too early = no tension in Act 3
+- Too late = feels rushed
+- Cozy needs time to savor the healing
+```
+
+---
+
+#### "Is This Too Intense for My Genre?"
+
+**You say:**
+```
+I'm writing cozy fantasy. My dark night has the protagonist completely
+shattered (IA drops from -0.5 to -0.95), relationships break apart
+(RA jumps to 180°), and she considers leaving town forever.
+
+Is this too dark for cozy?
+```
+
+**Claude might say:**
+```
+That's on the edge! Let's check cozy fantasy physics:
+
+✓ IA drop to -0.95: Acceptable (barely)
+✗ RA jump to 180°: Too severe
+   - Cozy allows RA up to ~160° max
+   - 180° = complete bond break (thriller territory)
+
+✗ "Leaving forever": Too extreme
+   - Cozy dark night = "I need a break"
+   - Thriller dark night = "I'm leaving forever"
+
+**Soften it:**
+- IA: -0.90 (deeply wounded but not shattered)
+- RA: 160° (very distant but bond not broken)
+- She retreats to her cottage, but community still checks on her
+- Keeps the cozy safety net visible even in crisis
+```
+
+---
+
+#### "Multi-Genre: How Do I Blend Physics?"
+
+**You say:**
+```
+I'm writing a romantic thriller (60% thriller, 40% romance).
+What physics constraints apply?
+```
+
+**Claude might say:**
+```
+Romantic thriller blends two sets of physics:
+
+From THRILLER:
+- Higher amplitude allowed (up to 2.0)
+- Sustained high stakes
+- Can have intense IA swings
+
+From ROMANCE:
+- MUST cross zero (polarity flip required)
+- MUST end healed (IA positive)
+- RA must close (relationship must work)
+
+Your constraints:
+- Amplitude: 2.0 max (higher than pure romance's 1.8)
+- IA must cross zero around 75-80%
+- Can sustain high chaos (entropy up to 0.8)
+- Dark night can be intense but character must heal
+
+Think: The thriller creates the chaos, the romance creates the healing.
+```
+
+---
+
+### NPE + Dimensions: How They Work Together
+
+You don't have to choose! They complement each other:
+
+**Use NPE when:**
+- Planning the overall arc
+- Checking genre compliance
+- Finding the dark night / polarity flip
+- Making sure the ending works
+
+**Use Dimensions when:**
+- Diagnosing a specific scene
+- Engineering tension in a chapter
+- Fixing pacing problems
+- Scene-by-scene tracking
+
+**Example workflow:**
+
+1. **Planning stage**: Use NPE
+   ```
+   "Plan my cozy fantasy NPE arc for 20 chapters"
+   ```
+
+2. **Drafting stage**: Use dimensions
+   ```
+   "Chapter 8 feels flat, diagnose using dimensions"
+   ```
+
+3. **Revision stage**: Check both
+   ```
+   "Does my overall arc match cozy fantasy NPE physics?
+   And does Chapter 12 have enough dimensional movement?"
+   ```
+
+---
+
+### Copy-Paste NPE Templates
+
+#### Template 1: NPE Arc Design
+```
+Design an NPE arc for my [GENRE] story:
+
+Genre: [genre]
+Length: [X chapters]
+
+Starting state (Chapter 1):
+- IA: [wounded/broken, describe]
+- RA: [relationship distance, describe]
+- EA: [environmental pressure, describe]
+- TA: 0 (quest not started)
+
+Ending state (Chapter X):
+- IA: [healed/whole, describe]
+- RA: [relationship state, describe]
+- EA: [final circumstances]
+- TA: 1 (quest complete)
+
+Questions:
+1. Where should the dark night happen?
+2. When should IA cross zero (polarity flip)?
+3. What IA value at dark night?
+4. Does this match [GENRE] physics?
+```
+
+---
+
+#### Template 2: NPE Genre Validation
+```
+Validate my arc against [GENRE] physics:
+
+Genre: [genre]
+Chapters: [X]
+
+Act 1:
+- IA progression: [start] → [end of act 1]
+- RA progression: [start] → [end of act 1]
+
+Act 2:
+- Dark night: Chapter [X]
+- IA at dark night: [value]
+- RA at dark night: [value]
+
+Act 3:
+- Polarity flip: Chapter [X] (IA crosses 0)
+- Final IA: [value]
+- Final RA: [value]
+
+Questions:
+1. Does this match [GENRE] amplitude limits?
+2. Is the dark night in the right place?
+3. Does the ending satisfy genre requirements?
+```
+
+---
+
+#### Template 3: Quick NPE Check
+```
+Quick NPE check for [GENRE]:
+
+My character arc:
+- Starts: [wounded/healed]
+- Dark night: [when and how bad]
+- Ends: [wounded/healed]
+
+My relationship arc:
+- Starts: [distant/close]
+- Ends: [distant/close]
+
+Does this work for [GENRE]?
+What needs adjusting?
+```
+
+---
+
+### Genre-Specific NPE Cheat Sheet
+
+#### Cozy Fantasy / Cozy Mystery
+```
+✓ Must cross zero
+✓ Gentle amplitude (≤1.5)
+✓ Dark night at 70-75%
+✓ End healed (IA ≥ +0.6)
+✓ Low chaos throughout
+```
+
+#### Psychological Thriller
+```
+✓ Can end wounded
+✓ High amplitude allowed (≤2.5)
+✓ Dark night can be anywhere
+✓ High chaos OK
+✗ No healing required
+```
+
+#### Dark Romance
+```
+✓ Must cross zero (late, 80%+)
+✓ Intense swings (≤2.0)
+✓ Must end healed for relationship
+✓ Can sustain high tension
+✓ Dark night very late
+```
+
+#### Epic Fantasy
+```
+✓ Must cross zero
+✓ Extended arcs (slow burn)
+✓ High amplitude (≤2.2)
+✓ Multiple mini dark nights OK
+✓ End healed
+```
+
+#### Romantic Comedy
+```
+✓ Must cross zero (early-mid)
+✓ Moderate amplitude (≤1.8)
+✓ Rapid oscillation (lots of ups/downs)
+✓ Low overall chaos
+✓ Light, bouncy feel
+```
+
+---
+
+### Example NPE Conversation (Full)
+
+**You:**
+```
+I'm planning a 26-chapter cozy fantasy. Librarian protagonist (Verity)
+starts feeling inadequate and isolated. She ends confident and in love
+with the grumpy baker.
+
+Help me plan the NPE arc. When should she cross zero? When's the dark night?
+```
+
+**Claude:**
+```
+Great setup! Here's your NPE arc for cozy fantasy:
+
+CHAPTER 1 (Opening):
+- IA: -0.85 (wounded, feels inadequate)
+- RA: 160° (distant from baker, they bicker)
+- EA: 0.3 (low stakes, cozy setting)
+- TA: 0 (no quest yet)
+
+CHAPTER 8-10 (End of Act 1):
+- IA: -0.70 (still wounded but small growth)
+- RA: 140° (slightly closer, bickering softens)
+- EA: 0.5 (stakes rising, mystery emerges)
+- TA: 0.2 (quest beginning)
+
+CHAPTER 17 (DARK NIGHT - 65% through):
+- IA: -0.90 (LOWEST POINT - doubts everything)
+- RA: 160° (pushed baker away)
+- EA: 1.0 (external pressure peaks)
+- TA: 0 (quest seems impossible)
+
+CHAPTER 22 (POLARITY FLIP - 85% through):
+- IA: 0 → +0.2 (CROSSES ZERO - first real hope)
+- RA: 90° (perpendicular but tension shifting)
+- EA: 0.6 (stakes easing)
+- TA: 0.5 (breakthrough on quest)
+
+CHAPTER 26 (ENDING):
+- IA: +0.75 (healed, confident, belongs)
+- RA: 60° (close, romantic, together)
+- EA: 0.2 (peaceful, cozy)
+- TA: 0.9 (quest complete)
+
+PHYSICS CHECK:
+✓ Crosses zero: Yes (Chapter 22)
+✓ Amplitude: 1.65 (slightly over but justified by story)
+✓ Dark night at 65%: Perfect for cozy
+✓ Ends healed: Yes (IA +0.75)
+✓ Relationship closes: Yes (160° → 60° = 100° closure)
+
+This matches cozy fantasy physics!
+```
+
+**You:**
+```
+Perfect! What should Chapter 17 (dark night) actually look like in terms
+of story events?
+```
+
+**Claude:**
+```
+Chapter 17 dark night for cozy fantasy should include:
+
+EMOTIONAL STATE:
+- Verity doubts her competence (IA: -0.90)
+- Feels she's failing everyone
+- Has pushed Roric away (RA: 160°)
+- Quest seems impossible
+
+COZY CONSTRAINTS:
+✓ She's sad, not destroyed
+✓ Community still cares (even if she can't see it)
+✓ Physical comfort present (cottage, tea, familiar nearby)
+✓ Reader knows it will resolve warmly
+
+STORY EVENTS:
+- Major setback in solving the mystery
+- Roric tries to help, she snaps at him
+- She retreats to her cottage
+- Sits alone with tea, staring at books
+- Maybe familiar tries to comfort her
+- She thinks: "I'm not good enough for this"
+
+NOT COZY (avoid these):
+✗ Complete breakdown
+✗ Life-or-death stakes
+✗ Destroying relationships permanently
+✗ Traumatic events
+✗ No comfort elements
+
+The difference:
+- Cozy dark night = "I can't do this" + cup of tea + cat purring
+- Thriller dark night = "Everyone will die" + no hope
+```
+
+---
+
 ## FAQs
 
 ### "Do I need to track numbers for every chapter?"
