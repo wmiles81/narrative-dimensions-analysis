@@ -1,0 +1,186 @@
+======================================================================
+STORY ARC ANALYSIS: Verity Cozy Fantasy Trajectory
+======================================================================
+Genre: Cozy Fantasy
+Length: 26 chapters
+Analysis Date: November 23, 2025
+
+This report looks at your character's emotional journey and relationship
+arc to help you spot pacing issues, identify key moments, and ensure
+your story matches cozy fantasy reader expectations.
+
+======================================================================
+QUICK SUMMARY
+======================================================================
+
+Overall Arc Health: 100/100
+[██████████] Excellent
+
+Character Journey:
+  • Starts: deeply wounded, feels broken/inadequate
+  • Darkest moment: Chapter 17 (deeply wounded, feels broken/inadequate)
+  • Ends: healed, whole, self-aware and strong
+
+Relationship Arc:
+  • Starts: distant/strangers
+  • Ends: close, intimate connection
+  • Distance closed: 100°
+
+Quick Take: Strong arc with good character growth and pacing.
+
+======================================================================
+CHARACTER'S EMOTIONAL ARC
+======================================================================
+
+The Journey from Wounded to Healed:
+
+     +1.0 (Healed)
+ +1.0 |                          
+ +0.8 |                         ○
+ +0.6 |                       ○○○
+ +0.4 |                      ○○○ 
+ +0.2 |                     ○○   
+ +0.0 |-----------●--------●○----
+ -0.2 |        ●●●●●●     ●●○    
+ -0.4 |     ●●●●●● ●●●   ●●      
+ -0.6 |  ●●●● ●      ●●  ●       
+ -0.8 |●●●●●          ●●●        
+     -1.0 (Wounded)
+      12345678901234567890123456
+
+Key Emotional Moments:
+  • Chapter 17: DARK NIGHT - Lowest emotional point
+    Your character feels: deeply wounded, feels broken/inadequate
+
+  • Chapter 22: TURNING POINT
+    Your character shifts from wounded to healing
+    This is where hope returns
+
+======================================================================
+RELATIONSHIP ARC
+======================================================================
+
+    180° (Distant)
+    180° |                          
+    162° |●●●●            ●●        
+    144° |  ● ●●         ● ●●       
+    126° |    ●●●●●●● ●  ●  ●       
+    108° |      ● ●●●● ●●           
+     90° |             ●     ●●     
+     72° |                    ●●●●●●
+     54° |                       ●●●
+     36° |                          
+     18° |                          
+      0° (Together)
+        12345678901234567890123456
+
+Relationship Distance:
+  • Starting distance: distant/strangers
+  • Ending distance: close, intimate connection
+  • Total progress: 100° closer
+
+Relationship Dynamics:
+  • Times they pushed apart: 7
+  • Closest moment: Chapter 25 (60°)
+
+======================================================================
+STORY PACING & FLOW
+======================================================================
+
+Story Movement:
+High |
+   0 | .
+ 0.13 | ██
+ 0.09 | █
+ 0.27 | ████
+ 0.18 | ███
+ 0.16 | ██
+ 0.11 | █
+ 0.19 | ███
+ 0.07 | █
+ 0.11 | █
+ 0.29 | █████
+ 0.28 | █████
+ 0.17 | ███
+ 0.29 | █████
+ 0.24 | ████
+ 0.42 | ███████
+ 0.08 | █
+ 0.41 | ███████
+ 0.55 | ██████████
+ 0.21 | ███
+ 0.16 | ██
+ 0.25 | ████
+ 0.18 | ███
+ 0.23 | ████
+ 0.15 | ██
+Low  |
+
+⚠ SLOW SECTIONS (little emotional change):
+   Chapters: 2, 4, 10, 18
+   These chapters might feel like they're dragging.
+   Consider adding emotional shifts or conflict.
+
+⚡ FAST SECTIONS (rapid emotional changes):
+   Chapters: 20
+   These are your intense, page-turning moments.
+
+
+======================================================================
+GENRE FIT: Cozy Fantasy
+======================================================================
+
+What's Working:
+  ✓ Character starts wounded (IA: -0.85)
+  ✓ Character ends healed (IA: +0.75)
+  ✓ Character crosses from wounded to healing (required for cozy_fantasy)
+
+Genre Expectations Not Met:
+  ✗ Dark night could be deeper for cozy_fantasy (got -0.90, expected ≤ -0.95)
+
+
+======================================================================
+KEY STORY MOMENTS
+======================================================================
+
+Chapter 17: DARK NIGHT
+  Lowest emotional point (IA: -0.90)
+  Timing: 65% through story
+  ✓ Perfect timing for dark night
+
+Chapter 22: TURNING POINT
+  Character shifts from wounded to healing
+  Timing: 85% through story
+  ✓ Good timing - enough space to show healing
+
+Chapter 20: RELATIONSHIP BREAKTHROUGH
+  Relationship closes 45° in one chapter
+  💕 Major connection moment
+
+
+======================================================================
+WHAT'S WORKING WELL
+======================================================================
+
+✓ Strong character growth - clear journey from wounded to healed
+✓ Significant relationship development - they get much closer
+✓ Good relationship conflict - they don't just smoothly get closer
+✓ Dark night has real weight - character truly struggles
+✓ Satisfying ending - character finds healing/wholeness
+
+======================================================================
+OPPORTUNITIES TO STRENGTHEN
+======================================================================
+
+Your arc is solid! No major issues detected.
+
+======================================================================
+SPECIFIC SUGGESTIONS
+======================================================================
+
+No specific fixes needed - your story flow looks good!
+
+======================================================================
+This analysis is here to help, not dictate. Trust your storytelling
+instincts - these are suggestions based on genre patterns, not rules.
+======================================================================
