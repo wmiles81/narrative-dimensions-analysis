@@ -4,9 +4,20 @@ How to visualize your story analysis with author-friendly charts and graphs.
 
 ---
 
-## Option 1: Standalone HTML Report (Easiest)
+## Choose Your Visualization Type
 
-Creates a self-contained HTML file you can open in any browser. **No coding or web server required.**
+You can generate two types of HTML visualizations:
+
+1. **Dimensional Report** - Shows 6 dimensions (intimacy, trust, desire, stakes, vulnerability, tension)
+2. **NPE Report** - Shows 4 NPE axes (IA, RA, EA, TA) for big-picture arc analysis
+
+Both are self-contained HTML files that open in any browser. **No coding or web server required.**
+
+---
+
+## Option 1A: Dimensional HTML Report
+
+Shows scene-level dimensions (intimacy, trust, desire, etc.) over time.
 
 ### Generate Report
 
@@ -14,32 +25,70 @@ Creates a self-contained HTML file you can open in any browser. **No coding or w
 python scripts/generate_html_report.py your_trajectory.json romance output.html
 ```
 
-### What You Get
+### Example
 
-- **Interactive chart** showing all dimensions over time
-- **Key statistics** (chapter count, growth metrics, peak tension)
-- **Automatic insights** based on your story arc
-- **Beautiful design** that's easy to share with critique partners
+```bash
+# Generate dimensional report
+python scripts/generate_html_report.py examples/verity_cozy_fantasy_trajectory.json cozy_fantasy verity_report.html
+```
+
+---
+
+## Option 1B: NPE HTML Report (NEW!)
+
+Shows high-level NPE axes for arc planning and validation.
+
+### Generate Report
+
+```bash
+python scripts/generate_npe_html_report.py your_trajectory.json cozy_fantasy output.html
+```
+
+### What You Get (NPE Report)
+
+- **Interactive chart** showing 4 NPE axes over time
+- **Axis explanations** (what IA, RA, EA, TA mean)
+- **Key statistics** (character transformation, relationship closure, dark night location)
+- **Automatic insights** (polarity flip detection, arc validation)
+- **Beautiful design** optimized for arc-level analysis
 
 ### Example
 
 ```bash
-# Analyze your cozy fantasy
-python scripts/generate_html_report.py examples/verity_cozy_fantasy_trajectory.json cozy_fantasy verity_report.html
+# Generate NPE report for cozy fantasy
+python scripts/generate_npe_html_report.py examples/verity_cozy_fantasy_trajectory.json cozy_fantasy verity_npe_report.html
 
 # Open in browser
-open verity_report.html  # Mac
-start verity_report.html  # Windows
-xdg-open verity_report.html  # Linux
+open verity_npe_report.html  # Mac
+start verity_npe_report.html  # Windows
+xdg-open verity_npe_report.html  # Linux
 ```
 
-The HTML report shows:
-- ❤️ Intimacy progression
-- 🤝 Trust building
-- 💘 Desire arc
-- ⚡ Stakes curve
-- 💔 Vulnerability journey
-- 📈 **TENSION** (calculated automatically)
+The NPE HTML report shows:
+- 💜 **IA** (Internal Axis): Character's wound-to-healing journey
+- 💕 **RA** (Relational Axis): Relationship orbital distance
+- ⚡ **EA** (Environmental Axis): External pressure curve
+- ✅ **TA** (Task Axis): Quest completion arc
+- 🎯 **Polarity flip** detection (when IA crosses zero)
+- 🌑 **Dark night** identification (lowest IA point)
+
+---
+
+## Which Report Should I Use?
+
+**Use Dimensional Report when:**
+- Diagnosing specific scenes or chapters
+- Engineering tension in a sequence
+- Tracking detailed emotional dynamics
+- Want to see individual dimensions (intimacy, trust, desire, etc.)
+
+**Use NPE Report when:**
+- Planning or validating overall story arc
+- Checking genre physics compliance
+- Finding the polarity flip and dark night
+- Want big-picture character transformation view
+
+**Pro tip:** Generate both! They complement each other.
 
 ---
 
@@ -83,16 +132,16 @@ The export script maps to React component genre keys:
 
 ---
 
-## Comparison: HTML vs React
+## Comparison: HTML Reports vs React
 
-| Feature | HTML Report | React Component |
-|---------|-------------|-----------------|
-| **Ease of Use** | ✓✓✓ Just open in browser | Requires React setup |
-| **Sharing** | ✓✓✓ Single file, email-friendly | Needs hosting |
-| **Interactivity** | ✓✓ Hover tooltips, chart zoom | ✓✓✓ Full interactive controls |
-| **Customization** | ✓ Edit HTML/CSS | ✓✓✓ React props, full control |
-| **Genre Analysis** | ✓ Basic insights | ✓✓✓ Genre validation, plot beats |
-| **Best For** | Quick analysis, sharing | Development, deep analysis |
+| Feature | HTML Dimensional | HTML NPE | React Component |
+|---------|------------------|----------|-----------------|
+| **Ease of Use** | ✓✓✓ Just open in browser | ✓✓✓ Just open in browser | Requires React setup |
+| **Sharing** | ✓✓✓ Single file, email | ✓✓✓ Single file, email | Needs hosting |
+| **Analysis Level** | Scene/chapter detail | Arc/genre validation | Full customization |
+| **Dimensions Shown** | 6 dimensions + tension | 4 NPE axes | All dimensions |
+| **Genre Insights** | ✓ Pacing, tension | ✓✓✓ Physics, polarity flip | ✓✓✓ Full validation |
+| **Best For** | Scene work, tension | Arc planning, genre check | Development, deep analysis |
 
 ---
 
@@ -100,39 +149,52 @@ The export script maps to React component genre keys:
 
 ### For Authors (No Coding)
 
-1. **Analyze with NPE:**
+1. **Analyze with NPE text report:**
    ```bash
    python scripts/npe_author_report.py trajectory.json cozy_fantasy > analysis.txt
    ```
 
-2. **Visualize:**
+2. **Visualize - Generate BOTH reports:**
    ```bash
-   python scripts/generate_html_report.py trajectory.json cozy_fantasy report.html
+   # NPE report for arc validation
+   python scripts/generate_npe_html_report.py trajectory.json cozy_fantasy npe_report.html
+
+   # Dimensional report for scene analysis
+   python scripts/generate_html_report.py trajectory.json cozy_fantasy dimensional_report.html
    ```
 
-3. **Share:**
-   - Email `report.html` to critique partners
-   - Open in browser to review yourself
+3. **Review:**
+   - Open `npe_report.html` to check overall arc, polarity flip, dark night
+   - Open `dimensional_report.html` to see scene-level tension and pacing
+   - Read `analysis.txt` for actionable feedback
+
+4. **Share:**
+   - Email HTML reports to critique partners
    - Take screenshots for social media
+   - Use NPE report for pitch/structure discussions
 
 ### For Developers
 
-1. **Generate multiple formats:**
+1. **Generate all formats:**
    ```bash
-   # Author report (text)
-   python scripts/npe_author_report.py story.json romance > report.txt
+   # Text analysis (plain English)
+   python scripts/npe_author_report.py story.json romance > npe_analysis.txt
 
-   # Visual report (HTML)
-   python scripts/generate_html_report.py story.json romance report.html
+   # NPE visual report (arc level)
+   python scripts/generate_npe_html_report.py story.json romance npe_report.html
+
+   # Dimensional visual report (scene level)
+   python scripts/generate_html_report.py story.json romance dimensional_report.html
 
    # React export (JSON)
    python scripts/export_for_viz.py story.json romance viz_data.json
    ```
 
 2. **Integrate into workflow:**
-   - Use HTML reports for quick reviews
-   - Use React component for detailed analysis
-   - Use author reports for actionable feedback
+   - Use NPE HTML for arc validation and genre physics
+   - Use dimensional HTML for tension analysis and pacing
+   - Use React component for interactive exploration
+   - Use author reports for client/stakeholder feedback
 
 ---
 
