@@ -206,7 +206,42 @@ What dimensional changes would create the most tension?
 
 ## Getting Dimensional Reports
 
-### **Option 1: Author-Friendly Text Report**
+You have multiple ways to analyze your story:
+
+### **Option 1: Technical Analysis Report** (For Advanced Users)
+
+Generate detailed numerical analysis with formulas:
+
+```bash
+python scripts/dimensional_analyzer.py your_story.json cozy_fantasy
+```
+
+**What you get:**
+- Numerical dimensional progression with statistics (mean, stdev, range)
+- Mathematical tension calculations with formulas
+- Gradient analysis (rate of change per chapter)
+- Correlation matrix showing dimensional relationships
+- Dimensional gap analysis with tension contributions
+- Chapter-by-chapter breakdown
+- **Technical terminology included**
+
+**Example output:**
+```
+Dimension         | Start | End   | Δ     | Mean  | StdDev | Range
+------------------|-------|-------|-------|-------|--------|-------
+intimacy          |   1.0 |   9.0 |  +8.0 |   4.8 |   2.47 | [1.0, 9.0]
+
+Pearson Correlation:
+  intimacy ⟷ trust: r = +0.978 ↑↑ (strong positive)
+
+Volatile Chapters (|Δ| > 2.0): 14, 18, 19
+```
+
+**Use this if:** You want deep statistical analysis, formulas, and numerical precision.
+
+---
+
+### **Option 2: Author-Friendly Text Report**
 
 Generate a scene analysis report in plain English:
 
@@ -220,6 +255,7 @@ python scripts/dimensional_author_report.py your_story.json cozy_fantasy
 - Vulnerability-trust gaps identified
 - Pacing feedback
 - Actionable suggestions in plain language
+- **No technical jargon**
 
 **Example output:**
 ```
@@ -230,7 +266,11 @@ YEARNING: Strong desire (9.0) but low intimacy (2.0)
 Creates longing and anticipation
 ```
 
-### **Option 2: Visual HTML Report**
+**Use this if:** You want practical writing advice without formulas.
+
+---
+
+### **Option 3: Visual HTML Report**
 
 Generate a beautiful interactive chart:
 
@@ -250,7 +290,11 @@ python scripts/generate_html_report.py your_story.json cozy_fantasy output.html
 - Cozy Fantasy: self-worth, trust, vulnerability, stakes, goal progress
 - Thriller: stakes, secrets, vulnerability, trust, danger
 
-### **Option 3: Interactive React App**
+**Use this if:** You want shareable visual reports without running a server.
+
+---
+
+### **Option 4: Interactive React App**
 
 Full-featured visualization with multi-layer analysis:
 
@@ -266,6 +310,30 @@ python scripts/launch_viz_app.py your_story.json --genre fantasy --mode dimensio
 - Switch to NPE mode anytime
 
 See `viz-app/QUICKSTART.md` for details.
+
+**Use this if:** You want the most powerful analysis with multi-layer comparison and correction suggestions.
+
+---
+
+### **Which Report Should I Use?**
+
+| Feature | Technical | Author-Friendly | HTML Visual | React App |
+|---------|-----------|-----------------|-------------|-----------|
+| **Formulas & Stats** | ✓✓✓ | ✗ | ✗ | ✗ |
+| **Plain English** | ✗ | ✓✓✓ | ✓✓ | ✓✓ |
+| **Visual Charts** | ✗ | ✗ | ✓✓✓ | ✓✓✓ |
+| **Shareable** | ✓ Text file | ✓ Text file | ✓✓✓ HTML file | ✗ Needs server |
+| **Gap Analysis** | ✓✓✓ Numerical | ✓✓ Descriptive | ✗ | ✓✓✓ Visual |
+| **Correlation Matrix** | ✓✓✓ | ✗ | ✗ | ✗ |
+| **Ideal Comparison** | ✗ | ✗ | ✗ | ✓✓✓ |
+| **Setup Required** | ✗ | ✗ | ✗ | ✓ Node.js |
+| **Best For** | Statistical analysis | Writing feedback | Quick visualization | Deep revision work |
+
+**Quick Guide:**
+- **Just starting?** → Author-Friendly Text Report
+- **Need stats?** → Technical Report
+- **Sharing with critique partners?** → HTML Visual Report
+- **Serious revision?** → React App with multi-layer analysis
 
 ---
 

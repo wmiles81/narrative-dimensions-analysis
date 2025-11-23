@@ -1,0 +1,214 @@
+======================================================================
+TECHNICAL DIMENSIONAL ANALYSIS
+======================================================================
+
+Genre: Cozy Fantasy
+Chapters: 26
+
+1. DIMENSIONAL PROGRESSION
+----------------------------------------------------------------------
+Dimension         | Start | End   | Δ     | Mean  | StdDev | Range
+------------------|-------|-------|-------|-------|--------|-------
+intimacy          |   1.0 |   9.0 |  +8.0 |   4.8 |   2.47 | [1.0, 9.0]
+trust             |   3.0 |  10.0 |  +7.0 |   5.9 |   2.13 | [3.0, 10.0]
+vulnerability     |   2.0 |  10.0 |  +8.0 |   5.3 |   2.64 | [1.0, 10.0]
+stakes            |   2.0 |   1.0 |  -1.0 |   4.8 |   2.12 | [1.0, 10.0]
+self_worth        |   2.0 |  10.0 |  +8.0 |   5.5 |   2.69 | [1.0, 10.0]
+goal_alignment    |   5.0 |  10.0 |  +5.0 |   6.7 |   2.23 | [2.0, 10.0]
+info_asymmetry    |   1.0 |   0.0 |  -1.0 |   3.2 |   2.03 | [0.0, 8.0]
+proximity         |   3.0 |  10.0 |  +7.0 |   6.2 |   2.26 | [3.0, 10.0]
+
+2. TENSION ANALYSIS
+----------------------------------------------------------------------
+Tension Formula:
+  T = Σ(w_i × d_i) / Σ(w_i × d_max) × 10
+
+Weight Configuration:
+  w_danger               = 0.30
+  w_desire_intimacy      = 1.00
+  w_info_asymmetry       = 0.60
+  w_misalignment         = 1.00
+  w_mystery              = 0.40
+  w_power_differential   = 0.40
+  w_proximity_trust      = 0.50
+  w_stakes               = 0.80
+  w_vulnerability_trust  = 1.20
+
+Tension Statistics:
+  Mean:     2.01
+  Median:   2.01
+  Std Dev:  0.88
+  Range:    [0.13, 3.79]
+  Peak:     3.79 at Chapter 17
+
+3. GRADIENT ANALYSIS (Rate of Change)
+----------------------------------------------------------------------
+Dimension         | Max Δ+ | Max Δ- | Avg |Δ| | Volatile Chapters
+------------------|--------|--------|---------|------------------
+intimacy          |  +2.00 |  -2.00 |    0.72 | None
+trust             |  +2.00 |  -1.00 |    0.60 | None
+vulnerability     |  +3.00 |  -3.00 |    1.20 | 14, 18
+stakes            |  +4.00 |  -5.00 |    1.56 | 10, 11, 12, 13, 14
+self_worth        |  +3.00 |  -2.00 |    1.12 | 19
+goal_alignment    |  +3.00 |  -3.00 |    1.24 | 11, 12, 18
+info_asymmetry    |  +3.00 |  -2.00 |    1.16 | 14
+proximity         |  +3.00 |  -2.00 |    0.76 | 19
+
+4. CORRELATION MATRIX
+----------------------------------------------------------------------
+Pearson correlation coefficient r ∈ [-1, 1]
+  r > +0.7:  Strong positive correlation
+  r < -0.7:  Strong negative correlation
+
+Significant Correlations (|r| ≥ 0.5):
+  intimacy        ⟷ proximity      : r = +0.982 ↑↑
+  trust           ⟷ proximity      : r = +0.981 ↑↑
+  intimacy        ⟷ trust          : r = +0.978 ↑↑
+  vulnerability   ⟷ self_worth     : r = +0.977 ↑↑
+  trust           ⟷ vulnerability  : r = +0.957 ↑↑
+  self_worth      ⟷ goal_alignment : r = +0.942 ↑↑
+  trust           ⟷ self_worth     : r = +0.935 ↑↑
+  vulnerability   ⟷ goal_alignment : r = +0.934 ↑↑
+  vulnerability   ⟷ proximity      : r = +0.933 ↑↑
+  self_worth      ⟷ proximity      : r = +0.903 ↑↑
+
+5. DIMENSIONAL GAP ANALYSIS
+----------------------------------------------------------------------
+Gaps that create narrative tension:
+
+Ch  | Gap Type                      | Magnitude | Values          | T_contrib
+----|-------------------------------|-----------|-----------------|----------
+ 17 | Stakes-Misalignment           |     18.00 | Stakes=10.0, Align=2.0 |      8.00
+ 16 | Stakes-Misalignment           |     16.00 | Stakes=9.0, Align=3.0 |      6.30
+ 15 | Stakes-Misalignment           |     13.00 | Stakes=8.0, Align=5.0 |      4.00
+ 11 | Stakes-Misalignment           |     11.00 | Stakes=7.0, Align=6.0 |      2.80
+ 13 | Stakes-Misalignment           |     11.00 | Stakes=7.0, Align=6.0 |      2.80
+
+6. CHAPTER-BY-CHAPTER DIMENSIONAL VALUES
+----------------------------------------------------------------------
+
+Chapter 1: The Quiet Librarian
+----------------------------------------------------------------------
+  goal_alignment      :   5.00
+  info_asymmetry      :   1.00
+  intimacy            :   1.00
+  proximity           :   3.00
+  self_worth          :   2.00
+  stakes              :   2.00
+  trust               :   3.00
+  vulnerability       :   2.00
+  TENSION             :   1.66
+
+Chapter 2: The Cookbook Speaks
+----------------------------------------------------------------------
+  goal_alignment      :   5.00
+  info_asymmetry      :   3.00
+  intimacy            :   1.00
+  proximity           :   3.00
+  self_worth          :   2.00
+  stakes              :   3.00
+  trust               :   3.00
+  vulnerability       :   2.00
+  TENSION             :   1.99
+
+Chapter 3: Jasper Vanishes Into Pages
+----------------------------------------------------------------------
+  goal_alignment      :   6.00
+  info_asymmetry      :   4.00
+  intimacy            :   1.00
+  proximity           :   3.00
+  self_worth          :   3.00
+  stakes              :   5.00
+  trust               :   3.00
+  vulnerability       :   3.00
+  TENSION             :   2.33
+
+Chapter 4: First Attempt and Failure
+----------------------------------------------------------------------
+  goal_alignment      :   4.00
+  info_asymmetry      :   5.00
+  intimacy            :   1.00
+  proximity           :   3.00
+  self_worth          :   2.00
+  stakes              :   5.00
+  trust               :   3.00
+  vulnerability       :   2.00
+  TENSION             :   2.62
+
+Chapter 5: Enter Roric Scout
+----------------------------------------------------------------------
+  goal_alignment      :   6.00
+  info_asymmetry      :   4.00
+  intimacy            :   2.00
+  proximity           :   4.00
+  self_worth          :   4.00
+  stakes              :   4.00
+  trust               :   4.00
+  vulnerability       :   4.00
+  TENSION             :   2.28
+
+Chapter 22: Wren's Change of Heart
+----------------------------------------------------------------------
+  goal_alignment      :   9.00
+  info_asymmetry      :   1.00
+  intimacy            :   7.00
+  proximity           :   9.00
+  self_worth          :   8.00
+  stakes              :   3.00
+  trust               :   8.00
+  vulnerability       :   8.00
+  TENSION             :   1.14
+
+Chapter 23: Final Recipe Reveals Itself
+----------------------------------------------------------------------
+  goal_alignment      :   9.00
+  info_asymmetry      :   1.00
+  intimacy            :   8.00
+  proximity           :   9.00
+  self_worth          :   9.00
+  stakes              :   4.00
+  trust               :   9.00
+  vulnerability       :   9.00
+  TENSION             :   1.06
+
+Chapter 24: Gathering the Town
+----------------------------------------------------------------------
+  goal_alignment      :  10.00
+  info_asymmetry      :   1.00
+  intimacy            :   8.00
+  proximity           :   9.00
+  self_worth          :   9.00
+  stakes              :   3.00
+  trust               :   9.00
+  vulnerability       :   9.00
+  TENSION             :   0.76
+
+Chapter 25: Awakening Keeper's Hearth
+----------------------------------------------------------------------
+  goal_alignment      :  10.00
+  info_asymmetry      :   0.00
+  intimacy            :   9.00
+  proximity           :  10.00
+  self_worth          :  10.00
+  stakes              :   2.00
+  trust               :  10.00
+  vulnerability       :  10.00
+  TENSION             :   0.27
+
+Chapter 26: A New Hearth, A New Home
+----------------------------------------------------------------------
+  goal_alignment      :  10.00
+  info_asymmetry      :   0.00
+  intimacy            :   9.00
+  proximity           :  10.00
+  self_worth          :  10.00
+  stakes              :   1.00
+  trust               :  10.00
+  vulnerability       :  10.00
+  TENSION             :   0.13
+
+... (16 chapters omitted for brevity) ...
+
+======================================================================
+END DIMENSIONAL ANALYSIS
+======================================================================
