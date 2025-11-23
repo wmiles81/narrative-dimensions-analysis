@@ -242,11 +242,15 @@ TA = (goal_alignment - info_asymmetry) / 10
 - `scripts/calculate_tension.py` - Compute tension from dimensional state
 - `scripts/validate_trajectory.py` - Check if arc is properly earned
 - `scripts/generate_report.py` - Create full dimensional analysis report
+- `scripts/dimensional_author_report.py` - **Author-friendly** scene/chapter analysis in plain English
 
 ### NPE Analysis
 - `scripts/npe_analyzer.py` - Analyze NPE axes, waveform, entropy, genre validation
 - `scripts/npe_visualizer.py` - Generate ASCII visualizations of NPE progression
+- `scripts/npe_author_report.py` - **Author-friendly** arc analysis without physics jargon
 - `scripts/convert_dimensions_to_npe.py` - Convert dimensional trajectory to NPE axes
+
+**Recommended for authors**: Use the `*_author_report.py` versions for practical, plain-English feedback.
 
 ## References
 
