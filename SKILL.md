@@ -263,7 +263,8 @@ TA = (goal_alignment - info_asymmetry) / 10
 ### NPE System
 - `references/npe_genre_profiles.py` - Complete physics constraints for 7 genres
 - `NPE_MULTI_GENRE_GUIDE.md` - Technical guide to multi-genre NPE analysis
-- `AUTHOR_GUIDE.md` - Non-technical guide for authors using NPE in Claude Chat
+- `AUTHOR_GUIDE_NPE.md` - Non-technical guide for authors using NPE in Claude Chat
+- `AUTHOR_GUIDE_DIMENSIONS.md` - Non-technical guide for scene-by-scene dimensional analysis
 
 ## Usage Examples
 

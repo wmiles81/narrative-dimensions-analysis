@@ -391,7 +391,7 @@ The HTML report is a single file. You can edit it directly:
 
 - HTML won't open? Check file path, try absolute path
 - Chart looks wrong? Verify trajectory JSON format matches examples
-- Need more customization? Check AUTHOR_GUIDE.md for report generators
-- React component issues? See React documentation or web developer
+- Need more customization? Check `AUTHOR_GUIDE_DIMENSIONS.md` or `AUTHOR_GUIDE_NPE.md` for report generators
+- React component issues? See `viz-app/README.md` or `viz-app/QUICKSTART.md`
 
 **Remember:** Start with the HTML report - it's the fastest way to see your story visualized!
