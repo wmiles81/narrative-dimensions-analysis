@@ -11,8 +11,11 @@ Think of your story as a journey through emotional space. This framework helps y
 - **Diagnose** why a scene feels flat or rushed
 - **Validate** that your story matches genre expectations
 - **Fix** pacing problems before beta readers see them
+- **Visualize** your story arc with beautiful charts (optional!)
 
 **No coding required.** You just have conversations with Claude.
+
+**Bonus:** Generate visual reports of your story arc that you can share with critique partners! See the "Visualizing Your Story" section below.
 
 ---
 
@@ -978,6 +981,48 @@ The difference:
 - Cozy dark night = "I can't do this" + cup of tea + cat purring
 - Thriller dark night = "Everyone will die" + no hope
 ```
+
+---
+
+## Visualizing Your Story (Optional Bonus!)
+
+If you want to **see** your story arc as a beautiful chart, you can generate an HTML report that opens in any browser.
+
+### How to Generate a Visual Report
+
+If you have your story data in a JSON file, run this command:
+
+```bash
+python scripts/generate_html_report.py your_story.json romance output.html
+```
+
+Then open `output.html` in your browser to see:
+- 📈 Interactive chart showing all dimensions over time
+- 📊 Key statistics (intimacy growth, trust journey, peak tension)
+- 💡 Automatic insights based on your arc
+- 🎨 Beautiful design perfect for sharing
+
+### Example
+
+```bash
+# Generate visual report for a cozy fantasy
+python scripts/generate_html_report.py my_cozy_fantasy.json cozy_fantasy report.html
+
+# Open in browser
+open report.html  # Mac
+start report.html  # Windows
+```
+
+**What you'll see:**
+- Every chapter's emotional state
+- How intimacy and trust build over time
+- Where your dark night hits
+- Whether your ending has the right emotional values
+- Tension spikes and valleys
+
+**Share it:** The HTML file is self-contained - email it to critique partners or beta readers!
+
+For full details, see `VISUALIZATION_USAGE.md`
 
 ---
 
