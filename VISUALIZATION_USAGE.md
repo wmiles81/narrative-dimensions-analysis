@@ -6,16 +6,76 @@ How to visualize your story analysis with author-friendly charts and graphs.
 
 ## Choose Your Visualization Type
 
-You can generate two types of HTML visualizations:
+You have three visualization options:
 
-1. **Dimensional Report** - Shows 6 dimensions (intimacy, trust, desire, stakes, vulnerability, tension)
-2. **NPE Report** - Shows 4 NPE axes (IA, RA, EA, TA) for big-picture arc analysis
-
-Both are self-contained HTML files that open in any browser. **No coding or web server required.**
+1. **HTML Dimensional Report** - Static HTML showing 6 dimensions (quick, easy to share)
+2. **HTML NPE Report** - Static HTML showing 4 NPE axes (big-picture arc validation)
+3. **Interactive React App** - Full-featured interactive visualization with multi-layer plotting ⭐ **NEW**
 
 ---
 
-## Option 1A: Dimensional HTML Report
+## 🚀 OPTION 1: Interactive React App (Recommended for Advanced Analysis)
+
+The React app provides the most powerful visualization with **multi-layer analysis**:
+
+- **Layer 1 (Ideal)**: Genre-typical trajectory - what readers expect
+- **Layer 2 (Actual)**: Your story data - what you wrote
+- **Layer 3 (Difference)**: Gap analysis - where you deviate
+- **Layer 4 (Correction)**: Suggested target path - how to fix it
+
+### Quick Start
+
+```bash
+# Launch with your story data
+python scripts/launch_viz_app.py examples/verity_cozy_fantasy_trajectory.json --genre fantasy --mode npe
+
+# For dimensional analysis
+python scripts/launch_viz_app.py your_story.json --genre romance --mode dimensions
+
+# With custom title
+python scripts/launch_viz_app.py your_story.json --genre fantasy --mode npe --title "My Epic Tale"
+```
+
+The launcher will:
+1. ✅ Install dependencies automatically (first run only)
+2. ✅ Prepare your data
+3. ✅ Start the server
+4. ✅ Open your browser
+
+### Features
+
+- **Dual Analysis Modes**: Toggle between Dimensions and NPE axes
+- **Multi-Layer Plotting**: Compare ideal vs. actual, see gaps, get correction suggestions
+- **Interactive Controls**: Show/hide layers, toggle dimensions, explore data points
+- **Genre-Aware**: Compares against genre-specific ideal trajectories
+- **Dynamic Data**: Load any trajectory JSON file
+- **Real-Time Updates**: Edit code, see changes instantly
+
+### Requirements
+
+- Node.js and npm (download from https://nodejs.org/)
+- First-time setup takes 2-3 minutes to install dependencies
+
+### Manual Setup (If Needed)
+
+```bash
+cd viz-app
+chmod +x setup.sh
+./setup.sh
+
+# Then launch manually
+npm run dev
+```
+
+See `viz-app/README.md` for full documentation.
+
+---
+
+## OPTION 2: HTML Static Reports (No Setup Required)
+
+Perfect for quick analysis and sharing with critique partners.
+
+### Option 2A: Dimensional HTML Report
 
 Shows scene-level dimensions (intimacy, trust, desire, etc.) over time.
 
@@ -34,7 +94,7 @@ python scripts/generate_html_report.py examples/verity_cozy_fantasy_trajectory.j
 
 ---
 
-## Option 1B: NPE HTML Report (NEW!)
+### Option 2B: NPE HTML Report
 
 Shows high-level NPE axes for arc planning and validation.
 
@@ -92,7 +152,7 @@ The NPE HTML report shows:
 
 ---
 
-## Option 2: Export for React Component
+## OPTION 3: Export Data for Custom Integration
 
 If you have the React visualization tool, export your data in the right format:
 
@@ -132,16 +192,23 @@ The export script maps to React component genre keys:
 
 ---
 
-## Comparison: HTML Reports vs React
+## Comparison: All Visualization Options
 
-| Feature | HTML Dimensional | HTML NPE | React Component |
-|---------|------------------|----------|-----------------|
-| **Ease of Use** | ✓✓✓ Just open in browser | ✓✓✓ Just open in browser | Requires React setup |
-| **Sharing** | ✓✓✓ Single file, email | ✓✓✓ Single file, email | Needs hosting |
-| **Analysis Level** | Scene/chapter detail | Arc/genre validation | Full customization |
-| **Dimensions Shown** | 6 dimensions + tension | 4 NPE axes | All dimensions |
-| **Genre Insights** | ✓ Pacing, tension | ✓✓✓ Physics, polarity flip | ✓✓✓ Full validation |
-| **Best For** | Scene work, tension | Arc planning, genre check | Development, deep analysis |
+| Feature | React App ⭐ | HTML Dimensional | HTML NPE |
+|---------|-------------|------------------|----------|
+| **Ease of Use** | ✓✓ One command (after setup) | ✓✓✓ Just open in browser | ✓✓✓ Just open in browser |
+| **Setup Required** | ✓ Node.js + npm (one-time) | ✗ No setup | ✗ No setup |
+| **Interactivity** | ✓✓✓ Full interactive controls | ✓ Hover tooltips | ✓ Hover tooltips |
+| **Multi-Layer Analysis** | ✓✓✓ Ideal/Actual/Diff/Correction | ✗ Single layer | ✗ Single layer |
+| **Mode Switching** | ✓✓✓ Toggle Dimensions↔NPE live | ✗ Fixed mode | ✗ Fixed mode |
+| **Data Loading** | ✓✓✓ Dynamic JSON loading | ✓ Generated once | ✓ Generated once |
+| **Sharing** | ✗ Needs running server | ✓✓✓ Single HTML file | ✓✓✓ Single HTML file |
+| **Gap Analysis** | ✓✓✓ Shows difference layer | ✗ Not available | ✗ Not available |
+| **Correction Suggestions** | ✓✓✓ Target trajectory layer | ✗ Not available | ✗ Not available |
+| **Analysis Level** | ✓✓✓ All modes | Scene/chapter detail | Arc/genre validation |
+| **Dimensions Shown** | ✓✓✓ All + toggle | 5-6 genre-specific | 4 NPE axes |
+| **Genre Comparison** | ✓✓✓ Live ideal overlay | ✗ No comparison | ✗ No comparison |
+| **Best For** | Deep analysis, revision planning | Quick sharing, critique partners | Arc validation, genre check |
 
 ---
 
