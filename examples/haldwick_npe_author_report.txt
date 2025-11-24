@@ -1,0 +1,182 @@
+======================================================================
+STORY ARC ANALYSIS: Haldwick Cookbook Trajectory
+======================================================================
+Genre: Contemporary Romance
+Length: 26 chapters
+Analysis Date: November 24, 2025
+
+This report looks at your character's emotional journey and relationship
+arc to help you spot pacing issues, identify key moments, and ensure
+your story matches contemporary romance reader expectations.
+
+======================================================================
+QUICK SUMMARY
+======================================================================
+
+Overall Arc Health: 100/100
+[██████████] Excellent
+
+Character Journey:
+  • Starts: deeply wounded, feels broken/inadequate
+  • Darkest moment: Chapter 1 (deeply wounded, feels broken/inadequate)
+  • Ends: healing well, growing in confidence
+
+Relationship Arc:
+  • Starts: distant/strangers
+  • Ends: deep bond, fully connected
+  • Distance closed: 109°
+
+Quick Take: Strong arc with good character growth and pacing.
+
+======================================================================
+CHARACTER'S EMOTIONAL ARC
+======================================================================
+
+The Journey from Wounded to Healed:
+
+     +1.0 (Healed)
+ +1.0 |                          
+ +0.8 |                         ○
+ +0.6 |                        ○○
+ +0.4 |                       ○○ 
+ +0.2 |                      ○○  
+ +0.0 |--------------------●●○---
+ -0.2 |         ●●●●●      ●●    
+ -0.4 |     ●●●●●●●●●●●   ●      
+ -0.6 |  ●●●●●●●     ●●● ●       
+ -0.8 |●●●●●           ●●●       
+     -1.0 (Wounded)
+      12345678901234567890123456
+
+Key Emotional Moments:
+  • Chapter 1: DARK NIGHT - Lowest emotional point
+    Your character feels: deeply wounded, feels broken/inadequate
+
+  • Chapter 23: TURNING POINT
+    Your character shifts from wounded to healing
+    This is where hope returns
+
+======================================================================
+RELATIONSHIP ARC
+======================================================================
+
+    180° (Distant)
+    180° |                          
+    162° |●               ●●●       
+    144° | ●●●●●         ●  ●       
+    126° |  ● ●●●●●●● ●  ●          
+    108° |      ●●●●●● ●●           
+     90° |             ●●    ●●     
+     72° |                    ●●●●  
+     54° |                       ●●●
+     36° |                          
+     18° |                          
+      0° (Together)
+        12345678901234567890123456
+
+Relationship Distance:
+  • Starting distance: distant/strangers
+  • Ending distance: deep bond, fully connected
+  • Total progress: 109° closer
+
+Relationship Dynamics:
+  • Times they pushed apart: 8
+  • Closest moment: Chapter 26 (51°)
+
+======================================================================
+STORY PACING & FLOW
+======================================================================
+
+Story Movement:
+High |
+ 0.12 | █
+ 0.08 | █
+   0 | .
+ 0.09 | █
+ 0.17 | ██
+ 0.18 | ██
+   0 | .
+ 0.06 | █
+ 0.10 | █
+   0 | .
+ 0.14 | ██
+ 0.13 | ██
+ 0.23 | ███
+ 0.12 | █
+ 0.36 | █████
+ 0.33 | █████
+ 0.13 | ██
+ 0.27 | ████
+ 0.62 | ██████████
+ 0.28 | ████
+ 0.15 | ██
+ 0.20 | ███
+ 0.24 | ███
+ 0.22 | ███
+ 0.19 | ███
+Low  |
+
+⚠ SLOW SECTIONS (little emotional change):
+   Chapters: 3, 4, 5, 8, 9, ...
+   These chapters might feel like they're dragging.
+   Consider adding emotional shifts or conflict.
+
+⚡ FAST SECTIONS (rapid emotional changes):
+   Chapters: 20
+   These are your intense, page-turning moments.
+
+
+======================================================================
+GENRE FIT: Contemporary Romance
+======================================================================
+
+No specific genre profile available for contemporary_romance
+
+======================================================================
+KEY STORY MOMENTS
+======================================================================
+
+Chapter 1: DARK NIGHT
+  Lowest emotional point (IA: -0.88)
+  Timing: 4% through story
+  ⚠ Too early - leaves too much recovery time
+
+Chapter 23: TURNING POINT
+  Character shifts from wounded to healing
+  Timing: 88% through story
+  ⚠ Very late - may feel rushed
+
+Chapter 20: RELATIONSHIP BREAKTHROUGH
+  Relationship closes 58° in one chapter
+  💕 Major connection moment
+
+
+======================================================================
+WHAT'S WORKING WELL
+======================================================================
+
+✓ Strong character growth - clear journey from wounded to healed
+✓ Significant relationship development - they get much closer
+✓ Good relationship conflict - they don't just smoothly get closer
+✓ Dark night has real weight - character truly struggles
+✓ Satisfying ending - character finds healing/wholeness
+
+======================================================================
+OPPORTUNITIES TO STRENGTHEN
+======================================================================
+
+⚠ Dark night comes early (4% through) - consider moving to 65-75%
+
+These aren't necessarily problems - just patterns that differ from
+typical contemporary romance stories. Use your judgment!
+
+======================================================================
+SPECIFIC SUGGESTIONS
+======================================================================
+
+No specific fixes needed - your story flow looks good!
+
+======================================================================
+This analysis is here to help, not dictate. Trust your storytelling
+instincts - these are suggestions based on genre patterns, not rules.
+======================================================================

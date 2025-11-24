@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haldwick Cookbook Trajectory - NPE Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #4c1d95 100%);
+            color: #fff;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #a78bfa;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .chart-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(167, 139, 250, 0.3);
+        }
+
+        .stat-card h3 {
+            color: #a78bfa;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-description {
+            font-size: 0.85rem;
+            color: #c4b5fd;
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .legend-color {
+            width: 24px;
+            height: 4px;
+            border-radius: 2px;
+        }
+
+        .insights {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .insights h2 {
+            color: #a78bfa;
+            margin-bottom: 1rem;
+        }
+
+        .insights ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .insights li {
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 0.5rem;
+            border-left: 3px solid #8b5cf6;
+        }
+
+        .insights li::before {
+            content: "💡 ";
+            margin-right: 0.5rem;
+        }
+
+        .axis-explanation {
+            background: rgba(139, 92, 246, 0.2);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(139, 92, 246, 0.4);
+        }
+
+        .axis-explanation h3 {
+            color: #c4b5fd;
+            margin-bottom: 1rem;
+        }
+
+        .axis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .axis-desc {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .axis-desc h4 {
+            color: #e9d5ff;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .axis-desc p {
+            font-size: 0.85rem;
+            color: #ddd6fe;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📖 Haldwick Cookbook Trajectory</h1>
+        <p class="subtitle">NPE Arc Analysis • Cozy Fantasy</p>
+
+        <div class="axis-explanation">
+            <h3>Understanding NPE Axes</h3>
+            <div class="axis-grid">
+                <div class="axis-desc">
+                    <h4>IA (Internal Axis)</h4>
+                    <p>Character's emotional state: -1 (wounded/broken) → 0 (turning point) → +1 (healed/whole)</p>
+                </div>
+                <div class="axis-desc">
+                    <h4>RA (Relational Axis)</h4>
+                    <p>Relationship distance: 180° (strangers) → 90° (friends) → 0° (intimate)</p>
+                </div>
+                <div class="axis-desc">
+                    <h4>EA (Environmental Axis)</h4>
+                    <p>External pressure: -1 (peaceful) → +1 (high stakes/danger)</p>
+                </div>
+                <div class="axis-desc">
+                    <h4>TA (Task Axis)</h4>
+                    <p>Quest completion: 0 (not started) → 1 (complete)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Chapters</h3>
+                <div class="stat-value">26</div>
+                <div class="stat-description">Complete arc tracked</div>
+            </div>
+
+            <div class="stat-card">
+                <h3>Character Transformation (IA)</h3>
+                <div class="stat-value">+1.55</div>
+                <div class="stat-description">From deep wound → transformed/whole</div>
+            </div>
+
+            <div class="stat-card">
+                <h3>Relationship Journey (RA)</h3>
+                <div class="stat-value">109°</div>
+                <div class="stat-description">Closed from 160° → 51°</div>
+            </div>
+
+            <div class="stat-card">
+                <h3>Dark Night</h3>
+                <div class="stat-value">Ch 1</div>
+                <div class="stat-description">Lowest IA: -0.88</div>
+            </div>
+
+            <div class="stat-card">
+                <h3>Quest Completion (TA)</h3>
+                <div class="stat-value">0.8</div>
+                <div class="stat-description">⚠ Incomplete</div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="npeChart"></canvas>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #8b5cf6;"></div>
+                    <span><strong>IA</strong> (Internal - Wound to Healed)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ec4899;"></div>
+                    <span><strong>RA</strong> (Relational - Orbital Distance)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #f59e0b;"></div>
+                    <span><strong>EA</strong> (Environmental Pressure)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #10b981;"></div>
+                    <span><strong>TA</strong> (Task/Quest Progress)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="insights">
+            <h2>📊 Key Insights</h2>
+            <ul>
+                <li><strong>Strong character transformation:</strong> IA increased by 1.55 points - character moves from wounded to healed</li>
+                <li><strong>Polarity flip detected:</strong> Character crosses from wounded to healing at Chapter 22 (85% through)</li>
+                <li><strong>Early dark night:</strong> Lowest IA at Chapter 1 (0% through) - consider moving crisis later</li>
+                <li><strong>Significant relationship development:</strong> Relationship closed 109° from distant/strangers to deep bond</li>
+                <li><strong>Satisfying ending:</strong> Character is healed (IA: 0.68) and relationship is close (51°)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('npeChart').getContext('2d');
+
+        // Custom plugin to draw zero line
+        const zeroLinePlugin = {
+            id: 'zeroLine',
+            afterDraw: (chart) => {
+                const ctx = chart.ctx;
+                const yAxis = chart.scales.y;
+                const xAxis = chart.scales.x;
+                const zeroY = yAxis.getPixelForValue(0);
+
+                ctx.save();
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([5, 5]);
+                ctx.beginPath();
+                ctx.moveTo(xAxis.left, zeroY);
+                ctx.lineTo(xAxis.right, zeroY);
+                ctx.stroke();
+                ctx.restore();
+            }
+        };
+
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["Ch 1", "Ch 2", "Ch 3", "Ch 4", "Ch 5", "Ch 6", "Ch 7", "Ch 8", "Ch 9", "Ch 10", "Ch 11", "Ch 12", "Ch 13", "Ch 14", "Ch 15", "Ch 16", "Ch 17", "Ch 18", "Ch 19", "Ch 20", "Ch 21", "Ch 22", "Ch 23", "Ch 24", "Ch 25", "Ch 26"],
+                datasets: [
+                    {
+                        label: 'IA (Internal Axis)',
+                        data: [-0.875, -0.835, -0.785, -0.765, -0.715, -0.575, -0.45, -0.44, -0.415, -0.315, -0.32, -0.255, -0.235, -0.31, -0.41, -0.585, -0.775, -0.875, -0.7, -0.4, -0.175, -0.05, 0.125, 0.325, 0.5, 0.675],
+                        borderColor: '#8b5cf6',
+                        backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                        tension: 0.4,
+                        fill: false,
+                        borderWidth: 3,
+                        pointRadius: 4,
+                        pointBackgroundColor: '#8b5cf6'
+                    },
+                    {
+                        label: 'RA (Relational - normalized)',
+                        data: [-0.7777777777777778, -0.6111111111111112, -0.5555555555555556, -0.5777777777777777, -0.5, -0.4444444444444444, -0.33333333333333337, -0.3555555555555555, -0.2777777777777778, -0.2777777777777778, -0.3111111111111111, -0.16666666666666663, -0.38888888888888884, -0.0888888888888889, -0.1333333333333333, -0.5, -0.7777777777777778, -0.8333333333333334, -0.6444444444444444, 0.0, 0.11111111111111116, 0.16666666666666674, 0.22222222222222232, 0.30000000000000004, 0.3999999999999999, 0.43333333333333335],
+                        borderColor: '#ec4899',
+                        backgroundColor: 'rgba(236, 72, 153, 0.1)',
+                        tension: 0.4,
+                        fill: false,
+                        borderWidth: 3,
+                        pointRadius: 4,
+                        pointBackgroundColor: '#ec4899'
+                    },
+                    {
+                        label: 'EA (Environmental)',
+                        data: [0.0, -0.2, -0.4, -0.5, 0.1, 0.2, 0.3, -0.3, 0.3, 0.4, -0.6, 0.6, -0.7, 0.1, -0.7, -0.9, -1.0, -0.3, 0.2, 0.3, 0.4, 0.4, 0.5, 0.7, 0.9, 0.8],
+                        borderColor: '#f59e0b',
+                        backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                        tension: 0.4,
+                        fill: false,
+                        borderWidth: 2,
+                        pointRadius: 3,
+                        pointBackgroundColor: '#f59e0b'
+                    },
+                    {
+                        label: 'TA (Task Progress)',
+                        data: [0.1, 0.3, 0.6, -0.3, 0.2, 0.4, 0.5, 0.2, 0.6, 0.7, -0.2, 0.8, -0.4, 0.3, -0.5, -0.8, -1.0, -0.7, 0.3, 0.5, 0.7, 0.8, 0.9, 0.95, 1.0, 0.85],
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        tension: 0.4,
+                        fill: false,
+                        borderWidth: 2,
+                        pointRadius: 3,
+                        pointBackgroundColor: '#10b981'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                aspectRatio: 2,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: 'rgba(15, 23, 42, 0.95)',
+                        titleColor: '#a78bfa',
+                        bodyColor: '#fff',
+                        borderColor: '#8b5cf6',
+                        borderWidth: 1,
+                        padding: 12,
+                        displayColors: true,
+                        callbacks: {
+                            afterLabel: function(context) {
+                                const chapterIdx = context.dataIndex;
+                                const ia = [-0.875, -0.835, -0.785, -0.765, -0.715, -0.575, -0.45, -0.44, -0.415, -0.315, -0.32, -0.255, -0.235, -0.31, -0.41, -0.585, -0.775, -0.875, -0.7, -0.4, -0.175, -0.05, 0.125, 0.325, 0.5, 0.675][chapterIdx];
+                                const ra = [160, 145, 140, 142, 135, 130, 120, 122, 115, 115, 118, 105, 125, 98, 102, 135, 160, 165, 148, 90, 80, 75, 70, 63, 54, 51][chapterIdx];
+
+                                if (context.datasetIndex === 0) {
+                                    return 'State: ' + ["Deep Wound", "Deep Wound", "Deep Wound", "Deep Wound", "Deep Wound", "Wounded", "Wounded", "Wounded", "Wounded", "Wounded", "Wounded", "Healing", "Healing", "Wounded", "Wounded", "Wounded", "Deep Wound", "Deep Wound", "Wounded", "Wounded", "Healing", "Healing", "Growing", "Growing", "Transformed/Whole", "Transformed/Whole"][chapterIdx];
+                                } else if (context.datasetIndex === 1) {
+                                    return 'Orbital: ' + ra.toFixed(0) + '° (' + ["Distant/Strangers", "Acquaintances", "Acquaintances", "Acquaintances", "Acquaintances", "Acquaintances", "Acquaintances", "Acquaintances", "Friends/Warming", "Friends/Warming", "Friends/Warming", "Friends/Warming", "Acquaintances", "Friends/Warming", "Friends/Warming", "Acquaintances", "Distant/Strangers", "Distant/Strangers", "Acquaintances", "Friends/Warming", "Close/Intimate", "Close/Intimate", "Close/Intimate", "Close/Intimate", "Deep Bond", "Deep Bond"][chapterIdx] + ')';
+                                }
+                                return '';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        min: -1,
+                        max: 1,
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: '#a78bfa',
+                            callback: function(value) {
+                                if (value === 0) return '0 (Zero Point)';
+                                if (value === -1) return '-1 (Wounded)';
+                                if (value === 1) return '+1 (Healed)';
+                                return value.toFixed(1);
+                            }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.05)'
+                        },
+                        ticks: {
+                            color: '#a78bfa',
+                            maxRotation: 45,
+                            minRotation: 45
+                        }
+                    }
+                },
+                interaction: {
+                    mode: 'nearest',
+                    axis: 'x',
+                    intersect: false
+                }
+            },
+            plugins: [zeroLinePlugin]
+        });
+    </script>
+</body>
+</html>

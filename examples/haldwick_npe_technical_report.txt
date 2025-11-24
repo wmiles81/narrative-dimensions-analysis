@@ -1,0 +1,113 @@
+======================================================================
+NARRATIVE PHYSICS ENGINE ANALYSIS
+======================================================================
+
+1. AXIS PROGRESSION
+----------------------------------------------------------------------
+Internal Axis (IA):  -0.88 → +0.68  (Δ +1.55)
+  Status: Transformed/Whole
+  Lowest point: -0.88 at Chapter 1
+
+Relational Axis (RA): 160° → 51°  (Δ 109° closer)
+  Status: Deep Bond
+  Closest approach: 51° at Chapter 26
+
+Environmental Axis (EA): +0.00 → +0.80
+  Peak pressure: +0.90 at Chapter 25
+
+Task Axis (TA): +0.10 → +0.85
+  Completion achieved: False
+
+2. EMOTIONAL WAVEFORM ANALYSIS
+----------------------------------------------------------------------
+IA Waveform:
+  Amplitude: 1.55 (cozy constraint: <1.5)
+  Frequency: 0.115 (oscillations per chapter)
+  Phase: Rising/Peak
+  Range: (-0.875, 0.675)
+
+3. CRITICAL THRESHOLDS
+----------------------------------------------------------------------
+🟡 Chapter 20: Relational Breakthrough
+   Orbit closes 58° (now 90°)
+
+🟡 Chapter 23: IA Polarity Flip
+   Internal Axis crosses from wound to growth
+
+4. ENTROPY (Narrative Disorder)
+----------------------------------------------------------------------
+Starting entropy: 0.23
+Peak entropy: 0.83 at Chapter 17
+Ending entropy: 0.08
+Genre compliance: ✗ Too intense for cozy
+
+5. ORBITAL RELATIONSHIP PROGRESSION
+----------------------------------------------------------------------
+Chapter | Orbit  | Intimacy Level
+--------|--------|-------------------
+   1    | 160°   | Distant/Strangers
+   6    | 130°   | Acquaintances
+  12    | 105°   | Friends/Warming
+  17    | 160°   | Distant/Strangers
+  20    |  90°   | Friends/Warming
+  26    |  51°   | Deep Bond
+
+6. THREE-ACT STRUCTURE
+----------------------------------------------------------------------
+Act 1 (Ch 1-6):   IA -0.88 → -0.57
+Act 2 (Ch 7-19): IA -0.88 → -0.23 (includes dark night)
+Act 3 (Ch 20-26): IA -0.40 → +0.68
+
+7. DETAILED AXIS TRACKING
+----------------------------------------------------------------------
+Ch | Title                           | IA    | RA_Orbit | EA    | TA   
+---|--------------------------------|-------|----------|-------|------
+ 1 | The Quiet Librarian            | -0.88 |  160°    | +0.00 | 0.10
+ 2 | The Cookbook Speaks            | -0.83 |  145°    | -0.20 | 0.30
+ 3 | Jasper Vanishes Into the Pages | -0.79 |  140°    | -0.40 | 0.60
+ 4 | The First Attempt (and Failure | -0.77 |  142°    | -0.50 | -0.30
+ 5 | Enter Roric Scout              | -0.71 |  135°    | +0.10 | 0.20
+ 6 | The First Keeper Letter        | -0.57 |  130°    | +0.20 | 0.40
+ 7 | Trying Again                   | -0.45 |  120°    | +0.30 | 0.50
+ 8 | Wren's Watchful Eye            | -0.44 |  122°    | -0.30 | 0.20
+ 9 | Recipe Two: Comfort Broth      | -0.41 |  115°    | +0.30 | 0.60
+10 | The Second Keeper Letter       | -0.32 |  115°    | +0.40 | 0.70
+11 | Wren Interferes                | -0.32 |  118°    | -0.60 | -0.20
+12 | Midpoint Revelation: It's Not  | -0.26 |  105°    | +0.60 | 0.80
+13 | The Sour Batch                 | -0.23 |  125°    | -0.70 | -0.40
+14 | Roric's Past Surfaces          | -0.31 |   98°    | +0.10 | 0.30
+15 | Wren's Warning                 | -0.41 |  102°    | -0.70 | -0.50
+16 | Jasper Begins to Fade          | -0.58 |  135°    | -0.90 | -0.80
+17 | The Breaking Point (Dark Night | -0.78 |  160°    | -1.00 | -1.00
+18 | Alone in the Quiet             | -0.88 |  165°    | -0.30 | -0.70
+19 | The Spark of Redirection       | -0.70 |  148°    | +0.20 | 0.30
+20 | The First Step Back            | -0.40 |   90°    | +0.30 | 0.50
+21 | Preparing the Truth            | -0.17 |   80°    | +0.40 | 0.70
+22 | Wren's Change of Heart         | -0.05 |   75°    | +0.40 | 0.80
+23 | The Final Recipe Reveals Itsel | +0.12 |   70°    | +0.50 | 0.90
+24 | Gathering the Town             | +0.33 |   63°    | +0.70 | 0.95
+25 | Awakening the Keeper's Hearth  | +0.50 |   54°    | +0.90 | 1.00
+26 | A New Hearth, A New Home       | +0.68 |   51°    | +0.80 | 0.85
+
+======================================================================
+END NPE ANALYSIS
+======================================================================
+
+======================================================================
+GENRE CONSTRAINT VALIDATION
+======================================================================
+
+Genre: cozy_fantasy
+Description: Low-stakes, warm, comforting stories with gentle arcs
+
+Valid: ✗ NO
+
+🚨 VIOLATIONS (3):
+  - Waveform amplitude 1.55 exceeds cozy_fantasy max (1.50). Emotional swings must stay gentle
+  - Peak entropy 0.83 exceeds cozy_fantasy peak (0.60). Disorder must stay minimal; reader comfort paramount
+  - cozy_fantasy requires a dark night moment
+
+⚠️  WARNINGS (1):
+  - Average entropy 0.43 exceeds cozy_fantasy sustained max (0.40)
+
+======================================================================

@@ -1,0 +1,102 @@
+======================================================================
+SCENE ANALYSIS: Haldwick Cookbook Trajectory
+======================================================================
+Genre:   Genre
+Level: Chapter
+Analysis Date: November 24, 2025
+
+This report looks at the emotional state and tension in your scene/chapter.
+
+======================================================================
+CURRENT EMOTIONAL STATE
+======================================================================
+
+Relationship Dimensions:
+  Intimacy             [░░░░░░░░░░] 0.0/10
+                      (strangers/distant)
+  Trust                [██████████] 10.0/10
+                      (complete faith)
+  Desire               [░░░░░░░░░░] 0.0/10
+                      (no attraction)
+  Vulnerability        [███░░░░░░░] 3.5/10
+                      (somewhat guarded)
+
+External Factors:
+  Stakes               [██░░░░░░░░] 2.0/10
+                      (mild consequences)
+  Physical Proximity   [██████████] 10.0/10
+                      ()
+
+Character Dynamics:
+  Goal Alignment       [█████████░] 9.5/10
+                      (perfect alignment)
+  Power Balance        [░░░░░░░░░░█░░░░░░░░░░] +0.0
+                      (balanced power)
+  Information Gaps     [░░░░░░░░░░] 0.0/10
+                      ()
+
+
+======================================================================
+TENSION ANALYSIS
+======================================================================
+
+Overall Tension: [░░░░░░░░░░] 0.5/10
+Assessment: Low - May lack engagement
+
+What's Creating Tension:
+
+Why This Matters:
+This scene is calm and low-tension. Great for breathing room or setup, but extended low tension may lose reader engagement.
+
+======================================================================
+EMOTIONAL DYNAMICS
+======================================================================
+
+• Balanced state - no major tensions or gaps
+  This might work for quiet moments, but could feel flat
+
+======================================================================
+STORY PROGRESSION
+======================================================================
+
+Biggest Changes:
+  ↑ Trust: increased by 6.0 points
+     (building trust)
+  ↑ Goal_Alignment: increased by 4.5 points
+     (finding common ground)
+  ↑ Vulnerability: increased by 1.5 points
+     (opening up)
+  ↑ Stakes: increased by 1.0 points
+     (pressure increasing)
+
+
+======================================================================
+PACING CHECK
+======================================================================
+
+Average Movement: 20.7 points per chapter
+⚠ Very fast - Make sure changes feel earned
+
+⚡ Big Jumps Detected:
+   Chapters/scenes: 2, 3, 5, 7, 8
+   Make sure these feel earned, not sudden
+
+
+======================================================================
+SUGGESTIONS
+======================================================================
+
+LOW TENSION - Scene may feel flat:
+  • Increase stakes (what's at risk?)
+  • Create information asymmetry (secrets, lies)
+  • Widen desire-proximity gap (they want but can't have)
+  • Add goal conflict (they want different things)
+
+⚠ LOW STAKES: Not much feels at risk
+  Consider: What does the character stand to lose?
+
+
+======================================================================
+These dimensions are lenses for analysis, not rules for writing.
+Trust your storytelling instincts!
+======================================================================
