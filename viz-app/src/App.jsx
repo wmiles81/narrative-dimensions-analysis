@@ -1,6 +1,90 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine, Area } from 'recharts';
 
+// Custom Tooltip Component
+const CustomTooltip = ({ active, payload, label, activeDimensions, layers }) => {
+  if (!active || !payload || payload.length === 0) return null;
+
+  // Group payload by dimension (combining actual and ideal)
+  const dimensionGroups = {};
+
+  payload.forEach(item => {
+    // Skip difference and correction layers in tooltip
+    if (item.dataKey && (item.name?.includes('Δ ') || item.name?.includes('Target '))) {
+      return;
+    }
+
+    const dimKey = item.dataKey;
+    if (!dimensionGroups[dimKey]) {
+      dimensionGroups[dimKey] = { actual: null, ideal: null };
+    }
+
+    if (item.name?.includes('(Actual)')) {
+      dimensionGroups[dimKey].actual = item.value;
+    } else if (item.name?.includes('(Ideal)')) {
+      dimensionGroups[dimKey].ideal = item.value;
+    }
+  });
+
+  return (
+    <div style={{
+      backgroundColor: '#1e293b',
+      border: '1px solid #8b5cf6',
+      borderRadius: '8px',
+      padding: '12px'
+    }}>
+      <p style={{ color: '#a78bfa', fontWeight: 'bold', marginBottom: '8px' }}>
+        Progress: {typeof label === 'number' ? label.toFixed(0) : label}%
+      </p>
+      {Object.entries(dimensionGroups).map(([dimKey, values]) => {
+        const dim = activeDimensions[dimKey];
+        if (!dim) return null;
+
+        const actualVal = values.actual !== null ? values.actual.toFixed(2) : 'N/A';
+        const idealVal = values.ideal !== null ? values.ideal.toFixed(2) : 'N/A';
+
+        // Show format: "DimensionName actual/ideal"
+        return (
+          <p key={dimKey} style={{ color: dim.color, margin: '4px 0', fontSize: '14px' }}>
+            {dim.name}: {actualVal}/{idealVal}
+          </p>
+        );
+      })}
+    </div>
+  );
+};
+
+// Custom Legend Component
+const CustomLegend = () => {
+  return (
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      gap: '24px',
+      paddingTop: '20px',
+      fontSize: '14px',
+      color: '#fff'
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div style={{
+          width: '30px',
+          height: '3px',
+          backgroundColor: '#fff',
+        }}></div>
+        <span>Actual</span>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div style={{
+          width: '30px',
+          height: '2px',
+          background: 'repeating-linear-gradient(to right, #fff 0, #fff 5px, transparent 5px, transparent 10px)',
+        }}></div>
+        <span>Ideal</span>
+      </div>
+    </div>
+  );
+};
+
 const App = () => {
   // Analysis mode: 'dimensions' or 'npe'
   const [analysisMode, setAnalysisMode] = useState('dimensions');
@@ -486,11 +570,12 @@ const App = () => {
                 label={{ value: 'Intensity', angle: -90, position: 'left', offset: 0, fill: '#fff' }}
               />
               <Tooltip
-                contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #8b5cf6', borderRadius: '8px' }}
-                labelStyle={{ color: '#a78bfa' }}
-                itemStyle={{ color: '#fff' }}
+                content={<CustomTooltip activeDimensions={activeDimensions} layers={layers} />}
               />
-              <Legend wrapperStyle={{ paddingTop: '20px' }} />
+              <Legend
+                wrapperStyle={{ paddingTop: '20px' }}
+                content={<CustomLegend />}
+              />
 
               {analysisMode === 'npe' && <ReferenceLine y={0} stroke="#ffffff60" strokeWidth={2} />}
 
@@ -540,7 +625,8 @@ const App = () => {
                     strokeWidth={2}
                     name={`Δ ${dim.name}`}
                     dot={false}
-                    strokeDasharray="3 3"
+                    strokeDasharray="2 2"
+                    legendType="none"
                   />
                 )
               )}
@@ -558,6 +644,8 @@ const App = () => {
                     strokeOpacity={0.7}
                     name={`Target ${dim.name}`}
                     dot={false}
+                    strokeDasharray="8 4"
+                    legendType="none"
                   />
                 )
               )}
